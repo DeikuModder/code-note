@@ -1,0 +1,16 @@
+---
+export interface Props {
+    styles?: string,
+    title?: string
+}
+
+const { cookies } = Astro;
+const { styles, title } = Astro.props
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+---
+
+<a href=`${accessToken && refreshToken ? "/dashboard" : "/signin"}` class=`${styles}`>
+    {title}
+</a>
