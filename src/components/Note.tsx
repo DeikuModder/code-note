@@ -13,17 +13,19 @@ const Note: React.FC<Props> = ({ note }) => {
 
   return (
     <>
-      <li className="w-full border border-neutral-700 rounded-lg p-4 flex">
-        <div className="w-[50%]">
+      <button
+        onClick={() => setOpenDetails(true)}
+        className="w-full border border-neutral-700 rounded-lg p-4 flex"
+      >
+        <div className="w-[50%] text-start">
           <p>{note.title}</p>
           <PriorityColor priority={note.priority} />
         </div>
 
-        <div className="w-[50%] flex justify-end">
-          <p>{note.metadata?.deadline?.toString() ?? null}</p>
+        <div className="w-[50%] text-end flex justify-end">
+          <p>{note.deadline ?? null}</p>
         </div>
-        <button onClick={() => setOpenDetails(true)}>Expand</button>
-      </li>
+      </button>
       {openDetails && (
         <Suspense>
           <NoteDetails onClose={() => setOpenDetails(false)} note={note} />

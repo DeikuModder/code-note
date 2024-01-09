@@ -1,11 +1,11 @@
 import type { APIRoute } from "astro";
 import { supabase } from "../../../lib/supabase";
 import Note from "../../../lib/NoteClass";
-import type { DefaultNote, Metadata } from "../../../types";
+import type { Notes } from "../../../types";
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const noteData = (await request.json()) as DefaultNote;
+    const noteData = (await request.json()) as Notes;
 
     const userData = await supabase.auth.getUser();
 
@@ -18,16 +18,12 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response("No authenitcated user", { status: 400 });
     }
 
-    const metadata: Metadata = {
-      description: noteData.description,
-      deadline: noteData.deadline,
-    };
-
     const note = new Note(
       noteData.title,
       noteData.priority,
       userData.data.user.id,
-      metadata
+      noteData.description,
+      noteData.deadline
     );
 
     const { data, error } = await supabase

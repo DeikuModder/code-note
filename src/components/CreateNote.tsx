@@ -1,5 +1,4 @@
 import { useState, type FormEventHandler } from "react";
-import type { DefaultNote } from "../types";
 import { useMutateNotes } from "../hooks/notes";
 
 interface ModalProps {
@@ -13,11 +12,11 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
   const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState("");
 
-  const note: DefaultNote = {
+  const note = {
     title,
     priority,
     description,
-    deadline: new Date(deadline),
+    deadline,
   };
 
   const { mutate } = useMutateNotes();

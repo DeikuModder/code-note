@@ -1,14 +1,21 @@
 import type { Notes } from "../types";
 
-const postNote = async (note: Notes) => {
+interface Params {
+  note: Partial<Notes>;
+  note_id: string;
+}
+
+const updateNote = async (params: Params) => {
   try {
-    const response = await fetch("/api/notes/create", {
-      method: "POST",
+    const response = await fetch(`/api/notes/update/${params.note_id}`, {
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(note),
+      body: JSON.stringify(params.note),
     });
 
     const data = await response.json();
+
+    console.log(data);
 
     if (!response.ok) {
       return JSON.stringify({
@@ -23,4 +30,4 @@ const postNote = async (note: Notes) => {
   }
 };
 
-export default postNote;
+export default updateNote;
