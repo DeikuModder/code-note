@@ -55,6 +55,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
                 placeholder="Title..."
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                className="p-1"
                 name="title"
                 required
               />
@@ -65,6 +66,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
                 id="priority"
                 defaultValue={priority}
                 onChange={(e) => setPriority(e.target.value)}
+                className="p-1"
                 name="priority"
                 required
               >
@@ -82,6 +84,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
               <input
                 type="date"
                 name="deadline"
+                className="p-1"
                 value={deadline}
                 onChange={(e) => setDeadline(e.target.value)}
               />
@@ -93,7 +96,8 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
                 cols={40}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Description..."
+                className="p-1"
+                placeholder="Description... (optional)"
                 name="description"
               />
             </label>

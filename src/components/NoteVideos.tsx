@@ -2,51 +2,45 @@ import { useState } from "react";
 import type { Notes } from "../types";
 import { useUpdateNotes } from "../hooks/notes";
 import Videos from "./Videos";
+import addOrPush from "../utils/addOrPush";
+import iFrameParser from "../utils/iFrameParser";
+import ListView from "./ListView";
 
 const NoteVideos = ({ note }: { note: Notes }) => {
   const [embedLinks, setEmbedLinks] = useState("");
+  const [openList, setOpenList] = useState(false);
   const [warningMessage, setWarningMessage] = useState("");
   const { mutate } = useUpdateNotes();
-  const parser = new DOMParser();
-  let embededLinks = [];
 
   const handleAdd = () => {
-    const iframe = parser.parseFromString(embedLinks, "text/html");
-    const iframSrc = iframe.body
-      .getElementsByTagName("iframe")[0]
-      .getAttribute("src");
-    const iFrameTitle = iframe.body
-      .getElementsByTagName("iframe")[0]
-      .getAttribute("title");
+    const [iFrameSrc, iFrameTitle] = iFrameParser(embedLinks);
 
-    if (note.videos_info && note.videos_info.length > 0) {
-      note.videos_info.map((video) => {
-        if (video.srcLink === iframSrc || video.title === iFrameTitle) {
-          return setWarningMessage("Video already exists on list");
-        }
-      });
+    const result = addOrPush(note.videos_info, {
+      srcLink: iFrameSrc || "",
+      title: iFrameTitle || "",
+    });
 
-      embededLinks = [...note.videos_info];
-
-      embededLinks.push({ srcLink: iframSrc || "", title: iFrameTitle || "" });
-    } else {
-      embededLinks = [{ srcLink: iframSrc || "", title: iFrameTitle || "" }];
-    }
-
-    mutate(
-      {
-        note: {
-          videos_info: embededLinks,
-        },
-        note_id: note.id!,
-      },
-      {
-        onSuccess: () => {
-          alert("Video added successfully");
-          setEmbedLinks("");
-        },
-      }
-    );
+    "message" in result
+      ? setWarningMessage(result.message)
+      : mutate(
+          {
+            note: {
+              videos_info: result,
+            },
+            note_id: note.id!,
+          },
+          {
+            onSuccess: () => {
+              alert("Note updated succesfully");
+            },
+            onError: () => {
+              alert("Couldn't update note");
+            },
+            onSettled: () => {
+              setEmbedLinks("");
+            },
+          }
+        );
   };
 
   return (
@@ -57,18 +51,17 @@ const NoteVideos = ({ note }: { note: Notes }) => {
         className="w-full"
       ></textarea>
       <button onClick={handleAdd}>Add</button>
-      {note.videos_info && note.videos_info.length > 1 ? (
+      {note.videos_info && note.videos_info.length > 0 ? (
         <>
-          <Videos
-            src={note.videos_info[0].srcLink}
-            title={note.videos_info[0].title}
-          />
-          <Videos
-            src={note.videos_info[1].srcLink}
-            title={note.videos_info[1].title}
-          />
+          <Videos videoInfo={note.videos_info[note.videos_info.length - 1]} />
+          <button onClick={() => setOpenList(true)}>View all</button>
+          {openList && (
+            <ListView onClose={() => setOpenList(false)} note={note} />
+          )}
         </>
-      ) : null}
+      ) : (
+        <p>No videos yet</p>
+      )}
       {warningMessage && <p>{warningMessage}</p>}
     </div>
   );

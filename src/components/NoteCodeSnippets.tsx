@@ -1,21 +1,21 @@
 import { useState } from "react";
 import type { Notes } from "../types";
-import { useUpdateNotes } from "../hooks/notes";
+import CodeSnippets from "./CodeSnippets";
 import addOrPush from "../utils/addOrPush";
-import DocumLinks from "./DocumLinks";
+import { useUpdateNotes } from "../hooks/notes";
 
-const NoteDocums = ({ note }: { note: Notes }) => {
-  const [links, setLinks] = useState("");
+const NoteCodeSnippets = ({ note }: { note: Notes }) => {
+  const [code, setCode] = useState("");
   const [warningMessage, setWarningMessage] = useState("");
   const { mutate } = useUpdateNotes();
 
   const handleAdd = () => {
-    const result = addOrPush(note.documLinks, links);
+    const result = addOrPush(note.codeSnippets, code);
 
     "message" in result
       ? setWarningMessage(result.message)
       : mutate(
-          { note: { documLinks: result }, note_id: note.id! },
+          { note: { codeSnippets: result }, note_id: note.id! },
           {
             onSuccess: () => {
               alert("Note updated succesfully");
@@ -24,7 +24,7 @@ const NoteDocums = ({ note }: { note: Notes }) => {
               alert("Couldn't update note");
             },
             onSettled: () => {
-              setLinks("");
+              setCode("");
             },
           }
         );
@@ -33,19 +33,19 @@ const NoteDocums = ({ note }: { note: Notes }) => {
   return (
     <div className="w-full p-8">
       <textarea
-        value={links}
-        onChange={(e) => setLinks(e.target.value)}
+        value={code}
+        onChange={(e) => setCode(e.target.value)}
         className="w-full"
       ></textarea>
-      {warningMessage && <p>{warningMessage}</p>}
       <button onClick={handleAdd}>Add</button>
-      {note.documLinks && note.documLinks.length > 0 ? (
-        <DocumLinks link={note.documLinks[note.documLinks.length - 1]} />
+      {note.codeSnippets && note.codeSnippets.length > 0 ? (
+        <CodeSnippets code={note.codeSnippets[note.codeSnippets.length - 1]} />
       ) : (
-        <p>No documentation links yet</p>
+        <p>No code snippets yet</p>
       )}
+      {warningMessage && <p>{warningMessage}</p>}
     </div>
   );
 };
 
-export default NoteDocums;
+export default NoteCodeSnippets;

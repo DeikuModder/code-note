@@ -1,10 +1,12 @@
-const Videos = ({ src, title }: { src: string; title: string }) => {
+import type { embeddedVideoProperties } from "../types";
+
+const Videos = ({ videoInfo }: { videoInfo: embeddedVideoProperties }) => {
   return (
     <iframe
       width="100%"
       height="200"
-      src={src}
-      title={title}
+      src={videoInfo.srcLink}
+      title={videoInfo.title}
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowFullScreen

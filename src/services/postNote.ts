@@ -1,6 +1,6 @@
-import type { Notes } from "../types";
+import type { BasicNote } from "../types";
 
-const postNote = async (note: Notes) => {
+const postNote = async (note: BasicNote) => {
   try {
     const response = await fetch("/api/notes/create", {
       method: "POST",

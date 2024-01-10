@@ -18,6 +18,13 @@ export type embeddedVideoProperties = {
   title: string;
 };
 
+export interface BasicNote {
+  title: string;
+  priority: string;
+  description?: string;
+  deadline?: string;
+}
+
 export interface Notes {
   title: string;
   priority: string;
