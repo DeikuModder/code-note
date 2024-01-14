@@ -1,4 +1,4 @@
-import type { Notes } from "../types";
+import type { Notes } from "@/src/types";
 
 interface Params {
   note: Partial<Notes>;

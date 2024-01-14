@@ -1,7 +1,7 @@
 ---
 
-import RegisterForm from "../components/RegisterForm";
-import Layout from "../layouts/Layout.astro";
+import RegisterForm from "@/components/Register/RegisterForm";
+import Layout from "@/layouts/Layout.astro";
 
 const { cookies, redirect } = Astro;
 
@@ -19,4 +19,4 @@ if (accessToken && refreshToken) {
         <RegisterForm client:visible/>
         You already have an account? <a href="/login" class="text-blue-700">Login!</a>
     </main>
-</Layout>
+</Layout>@/components/Register/RegisterForm

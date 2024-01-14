@@ -1,4 +1,4 @@
-import type { Notes, embeddedVideoProperties } from "../types";
+import type { Notes, embeddedVideoProperties } from "@/src/types";
 
 class Note implements Notes {
   title: string;

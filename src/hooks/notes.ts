@@ -1,9 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import type { Notes } from "../types";
-import postNote from "../services/postNote";
-import getUserNotes from "../services/getUserNotes";
-import deleteNote from "../services/deleteNotes";
-import updateNote from "../services/updateNotes";
+import type { Notes } from "@/src/types";
+import postNote from "@/services/postNote";
+import getUserNotes from "@/services/getUserNotes";
+import deleteNote from "@/services/deleteNotes";
+import updateNote from "@/services/updateNotes";
 
 const key = "notes";
 

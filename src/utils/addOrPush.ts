@@ -3,6 +3,9 @@ type ReturnType<T> = T[] | { message: string };
 function addOrPush<T>(array: T[] | undefined, data: T): ReturnType<T> {
   let resultArr: T[] = [];
 
+  if (data === "" || data === undefined || data === null)
+    return { message: "Please insert a valid input" };
+
   if (array && array.length > 0) {
     resultArr = [...array];
 

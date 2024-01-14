@@ -1,7 +1,7 @@
 import { useState } from "react";
-import type { Notes } from "../types";
-import { useUpdateNotes } from "../hooks/notes";
-import addOrPush from "../utils/addOrPush";
+import type { Notes } from "@/src/types";
+import { useUpdateNotes } from "@/hooks/notes";
+import addOrPush from "@/utils/addOrPush";
 import DocumLinks from "./DocumLinks";
 
 const NoteDocums = ({ note }: { note: Notes }) => {

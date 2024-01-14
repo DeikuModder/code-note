@@ -1,14 +1,12 @@
 import { useState } from "react";
-import type { Notes } from "../types";
-import { useUpdateNotes } from "../hooks/notes";
+import type { Notes } from "@/src/types";
+import { useUpdateNotes } from "@/hooks/notes";
 import Videos from "./Videos";
-import addOrPush from "../utils/addOrPush";
-import iFrameParser from "../utils/iFrameParser";
-import ListView from "./ListView";
+import addOrPush from "@/utils/addOrPush";
+import iFrameParser from "@/utils/iFrameParser";
 
 const NoteVideos = ({ note }: { note: Notes }) => {
   const [embedLinks, setEmbedLinks] = useState("");
-  const [openList, setOpenList] = useState(false);
   const [warningMessage, setWarningMessage] = useState("");
   const { mutate } = useUpdateNotes();
 
@@ -54,10 +52,6 @@ const NoteVideos = ({ note }: { note: Notes }) => {
       {note.videos_info && note.videos_info.length > 0 ? (
         <>
           <Videos videoInfo={note.videos_info[note.videos_info.length - 1]} />
-          <button onClick={() => setOpenList(true)}>View all</button>
-          {openList && (
-            <ListView onClose={() => setOpenList(false)} note={note} />
-          )}
         </>
       ) : (
         <p>No videos yet</p>

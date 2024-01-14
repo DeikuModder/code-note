@@ -1,4 +1,4 @@
-import type { embeddedVideoProperties } from "../types";
+import type { embeddedVideoProperties } from "@/src/types";
 
 const Videos = ({ videoInfo }: { videoInfo: embeddedVideoProperties }) => {
   return (

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import type { Notes } from "../types";
+import type { Notes } from "@/src/types";
 import CodeSnippets from "./CodeSnippets";
-import addOrPush from "../utils/addOrPush";
-import { useUpdateNotes } from "../hooks/notes";
+import addOrPush from "@/utils/addOrPush";
+import { useUpdateNotes } from "@/hooks/notes";
 
 const NoteCodeSnippets = ({ note }: { note: Notes }) => {
   const [code, setCode] = useState("");

@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
-import { supabase } from "../../../lib/supabase";
-import Note from "../../../lib/NoteClass";
-import type { Notes } from "../../../types";
+import { supabase } from "@/lib/supabase";
+import Note from "@/lib/NoteClass";
+import type { Notes } from "@/src/types";
 
 export const POST: APIRoute = async ({ request }) => {
   try {

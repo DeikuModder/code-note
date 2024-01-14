@@ -1,5 +1,5 @@
 import { useState, type FormEventHandler } from "react";
-import { useMutateNotes } from "../hooks/notes";
+import { useMutateNotes } from "@/hooks/notes";
 
 interface ModalProps {
   onClose: () => void;
@@ -48,6 +48,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
             className="flex flex-col justify-center items-center gap-4"
             name="create a note"
             onSubmit={handleSubmit}
+            method="post"
           >
             <label>
               <input
@@ -102,11 +103,12 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
               />
             </label>
             <br />
-            <button>Create Note</button>
+            <button id="createNoteBtn">Create Note</button>
             <p
               className={`${
                 !errorMessage ? "hidden" : ""
               } mt-4 bg-red-700 rounded-lg py-2 px-4 text-center text-white max-w-full`}
+              id="createNoteError"
             >
               {errorMessage}
             </p>

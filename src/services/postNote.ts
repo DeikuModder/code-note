@@ -1,4 +1,4 @@
-import type { BasicNote } from "../types";
+import type { BasicNote } from "@/src/types";
 
 const postNote = async (note: BasicNote) => {
   try {
