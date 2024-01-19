@@ -15,8 +15,6 @@ const updateNote = async (params: Params) => {
 
     const data = await response.json();
 
-    console.log(data);
-
     if (!response.ok) {
       return JSON.stringify({
         error: response.statusText,
