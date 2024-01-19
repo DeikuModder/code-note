@@ -26,7 +26,7 @@ export const PATCH: APIRoute = async ({ request, params }) => {
       });
     }
 
-    return new Response(JSON.stringify(data), { status: 200 });
+    return new Response(JSON.stringify(data[0]), { status: 200 });
   } catch (error) {
     return new Response(JSON.stringify({ error: "An error happened" }), {
       status: 500,
