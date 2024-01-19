@@ -24,3 +24,33 @@ const { title } = Astro.props;
 	</body>
 	<Footer />
 </html>
+<style is:global>
+	* {
+		box-sizing: border-box;
+		min-width: 0;	
+	},
+	html {
+		font-family: system-ui, sans-serif;
+		background: #f1f1f1;
+		margin: 0;
+		padding: 0;
+	},
+	body {
+		min-height: 100dvh;
+	}
+	a, a:any-link {
+		text-decoration: none;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		text-wrap: balance;
+	},
+	p {
+		text-wrap: pretty;
+	},
+
+	button, input[type="submit"] {
+		cursor: pointer;
+		outline: none;
+	}
+</style>
