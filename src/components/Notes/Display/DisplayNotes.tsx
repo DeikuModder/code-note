@@ -1,4 +1,4 @@
-import { useNotes } from "@/hooks/notes";
+import { useDeleteNotes, useNotes } from "@/hooks/notes";
 import UnfinishedTasks from "./UnfinishedTasks";
 import { useState } from "react";
 import FinishedTasks from "./FinishedTasks";

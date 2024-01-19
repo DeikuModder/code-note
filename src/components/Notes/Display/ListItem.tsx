@@ -1,5 +1,7 @@
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+import AskToast from "./Toasts/AskToast";
 
 interface Props {
   handleDelete: () => void;
@@ -7,15 +9,28 @@ interface Props {
 }
 
 const ListItem: React.FC<Props> = ({ handleDelete, children }) => {
+  const [deleteToast, setDeleteToast] = useState(false);
+
+  const handleFunction = () => {
+    handleDelete();
+    setDeleteToast(false);
+  };
+
   return (
     <div>
       <button
-        onClick={handleDelete}
+        onClick={() => setDeleteToast(true)}
         className="w-full bg-blue-900 rounded-t-lg p-2 text-gray-200 text-end"
       >
         <FontAwesomeIcon icon={faTrash} />
       </button>
       {children}
+      {deleteToast && (
+        <AskToast
+          content="Are you sure you want to delete this element?"
+          fn={handleFunction}
+        />
+      )}
     </div>
   );
 };

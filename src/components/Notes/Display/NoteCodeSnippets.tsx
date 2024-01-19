@@ -3,11 +3,20 @@ import type { Notes } from "@/src/types";
 import CodeSnippets from "./CodeSnippets";
 import addOrPush from "@/utils/addOrPush";
 import { useUpdateNotes } from "@/hooks/notes";
+import WarningToast from "./Toasts/WarningToast";
+import SuccessToast from "./Toasts/SuccessToast";
+import ErrorToast from "./Toasts/ErrorToast";
 
 const NoteCodeSnippets = ({ note }: { note: Notes }) => {
   const [code, setCode] = useState("");
   const [warningMessage, setWarningMessage] = useState("");
-  const { mutate } = useUpdateNotes();
+  const { mutate, isSuccess, isError } = useUpdateNotes();
+
+  if (warningMessage !== "") {
+    setTimeout(() => {
+      setWarningMessage("");
+    }, 2000);
+  }
 
   const handleAdd = () => {
     const result = addOrPush(note.codeSnippets, code);
@@ -17,12 +26,6 @@ const NoteCodeSnippets = ({ note }: { note: Notes }) => {
       : mutate(
           { note: { codeSnippets: result }, note_id: note.id! },
           {
-            onSuccess: () => {
-              alert("Note updated succesfully");
-            },
-            onError: () => {
-              alert("Couldn't update note");
-            },
             onSettled: () => {
               setCode("");
             },
@@ -43,7 +46,9 @@ const NoteCodeSnippets = ({ note }: { note: Notes }) => {
       ) : (
         <p>No code snippets yet</p>
       )}
-      {warningMessage && <p>{warningMessage}</p>}
+      {warningMessage && <WarningToast content={warningMessage} />}
+      {isSuccess && <SuccessToast content="Successfully added snippet" />}
+      {isError && <ErrorToast content="Couldn't add snippet" />}
     </div>
   );
 };

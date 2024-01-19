@@ -1,5 +1,7 @@
 import { useState, type FormEventHandler } from "react";
 import { useMutateNotes } from "@/hooks/notes";
+import ErrorToast from "../Display/Toasts/ErrorToast";
+import SuccessToast from "../Display/Toasts/SuccessToast";
 
 interface ModalProps {
   onClose: () => void;
@@ -104,17 +106,10 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
             </label>
             <br />
             <button id="createNoteBtn">Create Note</button>
-            <p
-              className={`${
-                !errorMessage ? "hidden" : ""
-              } mt-4 bg-red-700 rounded-lg py-2 px-4 text-center text-white max-w-full`}
-              id="createNoteError"
-            >
-              {errorMessage}
-            </p>
           </form>
         </div>
       </div>
+      {errorMessage && <ErrorToast content={errorMessage} />}
     </div>
   );
 };

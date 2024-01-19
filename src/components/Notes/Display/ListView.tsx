@@ -35,14 +35,7 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
 
     "error" in result
       ? console.log(result.error)
-      : mutate(
-          { note: objectNote, note_id: note.id! },
-          {
-            onSuccess: () => {
-              alert("Succesfully deleted");
-            },
-          }
-        );
+      : mutate({ note: objectNote, note_id: note.id! });
   };
 
   return (

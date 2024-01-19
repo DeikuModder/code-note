@@ -3,11 +3,20 @@ import type { Notes } from "@/src/types";
 import { useUpdateNotes } from "@/hooks/notes";
 import addOrPush from "@/utils/addOrPush";
 import DocumLinks from "./DocumLinks";
+import SuccessToast from "./Toasts/SuccessToast";
+import ErrorToast from "./Toasts/ErrorToast";
+import WarningToast from "./Toasts/WarningToast";
 
 const NoteDocums = ({ note }: { note: Notes }) => {
   const [links, setLinks] = useState("");
   const [warningMessage, setWarningMessage] = useState("");
-  const { mutate } = useUpdateNotes();
+  const { mutate, isSuccess, isError } = useUpdateNotes();
+
+  if (warningMessage !== "") {
+    setTimeout(() => {
+      setWarningMessage("");
+    }, 2000);
+  }
 
   const handleAdd = () => {
     const result = addOrPush(note.documLinks, links);
@@ -17,12 +26,6 @@ const NoteDocums = ({ note }: { note: Notes }) => {
       : mutate(
           { note: { documLinks: result }, note_id: note.id! },
           {
-            onSuccess: () => {
-              alert("Note updated succesfully");
-            },
-            onError: () => {
-              alert("Couldn't update note");
-            },
             onSettled: () => {
               setLinks("");
             },
@@ -37,13 +40,15 @@ const NoteDocums = ({ note }: { note: Notes }) => {
         onChange={(e) => setLinks(e.target.value)}
         className="w-full"
       ></textarea>
-      {warningMessage && <p>{warningMessage}</p>}
+      {warningMessage && <WarningToast content={warningMessage} />}
       <button onClick={handleAdd}>Add</button>
       {note.documLinks && note.documLinks.length > 0 ? (
         <DocumLinks link={note.documLinks[note.documLinks.length - 1]} />
       ) : (
         <p>No documentation links yet</p>
       )}
+      {isSuccess && <SuccessToast content="Documentation added" />}
+      {isError && <ErrorToast content="Couldn't add documentation link" />}
     </div>
   );
 };

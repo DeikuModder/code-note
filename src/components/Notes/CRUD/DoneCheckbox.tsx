@@ -1,8 +1,10 @@
 import { useUpdateNotes } from "@/hooks/notes";
 import type { Notes } from "@/src/types";
+import LoadingToast from "../Display/Toasts/LoadingToast";
+import SuccessToast from "../Display/Toasts/SuccessToast";
 
 const DoneCheckbox = ({ note }: { note: Notes }) => {
-  const { mutate } = useUpdateNotes();
+  const { mutate, isPending, isSuccess } = useUpdateNotes();
 
   const handleCheck = () => {
     mutate(
@@ -16,14 +18,25 @@ const DoneCheckbox = ({ note }: { note: Notes }) => {
   };
 
   return (
-    <label>
-      <input
-        type="checkbox"
-        name="noteStatus"
-        defaultChecked={note.isDone}
-        onClick={handleCheck}
-      />
-    </label>
+    <>
+      {isPending ? (
+        <LoadingToast content="Updating note..." />
+      ) : (
+        <label>
+          <input
+            type="checkbox"
+            name="noteStatus"
+            defaultChecked={note.isDone}
+            onClick={handleCheck}
+          />
+        </label>
+      )}
+      {isSuccess && (
+        <SuccessToast
+          content={`Note sucessfully ${note.isDone ? "unchecked" : "checked"}`}
+        />
+      )}
+    </>
   );
 };
 
