@@ -4,11 +4,20 @@ import { useUpdateNotes } from "@/hooks/notes";
 import Videos from "./Videos";
 import addOrPush from "@/utils/addOrPush";
 import iFrameParser from "@/utils/iFrameParser";
+import WarningToast from "./Toasts/WarningToast";
+import SuccessToast from "./Toasts/SuccessToast";
+import ErrorToast from "./Toasts/ErrorToast";
 
 const NoteVideos = ({ note }: { note: Notes }) => {
   const [embedLinks, setEmbedLinks] = useState("");
   const [warningMessage, setWarningMessage] = useState("");
-  const { mutate } = useUpdateNotes();
+  const { mutate, isSuccess, isError } = useUpdateNotes();
+
+  if (warningMessage !== "") {
+    setTimeout(() => {
+      setWarningMessage("");
+    }, 2000);
+  }
 
   const handleAdd = () => {
     const [iFrameSrc, iFrameTitle] = iFrameParser(embedLinks);
@@ -28,12 +37,6 @@ const NoteVideos = ({ note }: { note: Notes }) => {
             note_id: note.id!,
           },
           {
-            onSuccess: () => {
-              alert("Note updated succesfully");
-            },
-            onError: () => {
-              alert("Couldn't update note");
-            },
             onSettled: () => {
               setEmbedLinks("");
             },
@@ -56,7 +59,9 @@ const NoteVideos = ({ note }: { note: Notes }) => {
       ) : (
         <p>No videos yet</p>
       )}
-      {warningMessage && <p>{warningMessage}</p>}
+      {warningMessage && <WarningToast content={warningMessage} />}
+      {isSuccess && <SuccessToast content="Succesfully added video" />}
+      {isError && <ErrorToast content="Couldn't add video" />}
     </div>
   );
 };
