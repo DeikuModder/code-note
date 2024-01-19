@@ -21,9 +21,12 @@ export const DELETE: APIRoute = async ({ params }) => {
       });
     }
 
-    return new Response(JSON.stringify({ message: "Succesfully deleted" }), {
-      status: 200,
-    });
+    return new Response(
+      JSON.stringify({ message: "Succesfully deleted", id: note_id }),
+      {
+        status: 200,
+      }
+    );
   } catch (error) {
     return new Response(JSON.stringify({ error: "An error happened" }), {
       status: 500,
