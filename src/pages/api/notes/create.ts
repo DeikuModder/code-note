@@ -3,8 +3,6 @@ import { supabase } from "@/lib/supabase";
 import Note from "@/lib/NoteClass";
 import type { Notes } from "@/src/types";
 
-export const prerender = true;
-
 export const POST: APIRoute = async ({ request }) => {
   try {
     const noteData = (await request.json()) as Notes;
