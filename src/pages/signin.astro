@@ -11,6 +11,8 @@ if (accessToken && refreshToken) {
   return redirect("/dashboard");
 }
 
+export const prerender = false
+
 ---
 
 <Layout title="CodeNote | Signin">

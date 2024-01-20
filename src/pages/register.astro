@@ -12,6 +12,8 @@ if (accessToken && refreshToken) {
   return redirect("/dashboard");
 }
 
+export const prerender = false
+
 ---
 
 <Layout title="CodeNote | Register">
@@ -19,4 +21,4 @@ if (accessToken && refreshToken) {
         <RegisterForm client:visible/>
         You already have an account? <a href="/login" class="text-blue-700">Login!</a>
     </main>
-</Layout>@/components/Register/RegisterForm
+</Layout>
