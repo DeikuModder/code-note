@@ -1,8 +1,6 @@
 import type { APIRoute } from "astro";
 import { supabase } from "@/lib/supabase";
 
-export const prerender = false;
-
 export const PATCH: APIRoute = async ({ request, params }) => {
   try {
     const note = await request.json();

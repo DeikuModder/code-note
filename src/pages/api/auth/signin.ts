@@ -1,8 +1,6 @@
 import type { APIRoute } from "astro";
 import { supabase } from "@/lib/supabase";
 
-export const prerender = false;
-
 export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   try {
     const formData = await request.formData();
