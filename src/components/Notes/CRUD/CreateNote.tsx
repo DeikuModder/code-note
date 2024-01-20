@@ -2,55 +2,54 @@ import { useState, type FormEventHandler } from "react";
 import { useMutateNotes } from "@/hooks/notes";
 import ErrorToast from "../Display/Toasts/ErrorToast";
 import SuccessToast from "../Display/Toasts/SuccessToast";
+import LoadingToast from "../Display/Toasts/LoadingToast";
 
 interface ModalProps {
   onClose: () => void;
 }
 
 const Modal: React.FC<ModalProps> = ({ onClose }) => {
-  const [errorMessage, setErrorMessage] = useState("");
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("");
-  const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState("");
+  const [description, setDescription] = useState("");
+  const { mutate, isError, isPending } = useMutateNotes();
 
-  const note = {
-    title,
-    priority,
-    description,
-    deadline,
-  };
-
-  const { mutate } = useMutateNotes();
-
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
-    mutate(note, {
-      onSuccess: () => {
-        onClose();
+    mutate(
+      {
+        title: title,
+        priority: priority,
+        deadline: deadline,
+        description: description,
       },
-      onError: (error) => {
-        setErrorMessage(error.message);
-      },
-    });
+      {
+        onSuccess: () => {
+          onClose();
+        },
+      }
+    );
   };
 
   return (
-    <div
-      id="createNoteModal"
-      className="w-full h-[100vh] bg-[#00000070] absolute top-0 left-0 flex flex-col items-center justify-center"
-    >
-      <div className="w-[80%] h-[60%] bg-slate-200 rounded-lg overflow-auto">
+    <div className="w-full h-[100vh] bg-[#00000070] absolute top-0 left-0 flex flex-col items-center justify-center">
+      <div className="w-[60%] h-[80%] bg-slate-200 rounded-lg overflow-auto">
         <div className="w-full flex flex-row justify-end">
-          <button onClick={onClose}>X</button>
+          <button
+            onClick={onClose}
+            className="text-xl font-bold leading-none text-gray-700 hover:text-black focus:outline-none"
+          >
+            X
+          </button>
         </div>
+
         <div className="w-full flex flex-col justify-center items-center p-8">
           <form
-            className="flex flex-col justify-center items-center gap-4"
-            name="create a note"
             onSubmit={handleSubmit}
-            method="post"
+            className="flex flex-col justify-center items-center gap-4"
+            id="create-note-form"
           >
             <label>
               <input
@@ -59,8 +58,8 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 className="p-1"
-                name="title"
                 required
+                id="title"
               />
             </label>
 
@@ -70,7 +69,6 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
                 defaultValue={priority}
                 onChange={(e) => setPriority(e.target.value)}
                 className="p-1"
-                name="priority"
                 required
               >
                 <option value="" hidden>
@@ -86,10 +84,10 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
             <label>
               <input
                 type="date"
-                name="deadline"
                 className="p-1"
                 value={deadline}
                 onChange={(e) => setDeadline(e.target.value)}
+                id="deadline"
               />
             </label>
 
@@ -101,15 +99,18 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
                 onChange={(e) => setDescription(e.target.value)}
                 className="p-1"
                 placeholder="Description... (optional)"
-                name="description"
+                id="description"
               />
             </label>
-            <br />
-            <button id="createNoteBtn">Create Note</button>
+
+            <button type="submit" id="submit-note">
+              Create note
+            </button>
           </form>
         </div>
       </div>
-      {errorMessage && <ErrorToast content={errorMessage} />}
+      {isPending && <LoadingToast content="Creating note..." />}
+      {isError && <ErrorToast content="Couldn't create note" />}
     </div>
   );
 };

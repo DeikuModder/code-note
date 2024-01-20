@@ -1,7 +1,8 @@
-import { useDeleteNotes, useNotes } from "@/hooks/notes";
+import { useNotes } from "@/hooks/notes";
 import UnfinishedTasks from "./UnfinishedTasks";
 import { useState } from "react";
 import FinishedTasks from "./FinishedTasks";
+import CreateNote from "../CRUD/CreateNote";
 
 const DisplayNotes = () => {
   const [actualList, setActualList] = useState("undone");
