@@ -4,6 +4,12 @@ function RegisterForm() {
   const [responseMessage, setResponseMessage] = useState("");
   const [errorClass, setErrorClass] = useState(false);
 
+  if (responseMessage !== "") {
+    setTimeout(() => {
+      setResponseMessage("");
+    }, 4000);
+  }
+
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 

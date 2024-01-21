@@ -60,7 +60,10 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
       path: "/",
       httpOnly: true,
     });
-    return redirect("/dashboard");
+
+    return new Response(JSON.stringify({ message: "Login succesfull!" }), {
+      status: 200,
+    });
   } catch (error) {
     return new Response(JSON.stringify({ error: "An error has ocurred" }), {
       status: 500,

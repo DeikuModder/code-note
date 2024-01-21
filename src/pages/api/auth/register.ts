@@ -40,13 +40,19 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    const { error } = await supabase.auth.signUp({
+    const res = await supabase.auth.signUp({
       email,
       password,
     });
 
-    if (error) {
-      return new Response(JSON.stringify({ error: error.message }), {
+    if (res.data.session === null) {
+      return new Response(JSON.stringify({ error: "User already exists" }), {
+        status: 400,
+      });
+    }
+
+    if (res.error) {
+      return new Response(JSON.stringify({ error: res.error.message }), {
         status: 500,
       });
     }
