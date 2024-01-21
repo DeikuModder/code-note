@@ -45,12 +45,6 @@ export const POST: APIRoute = async ({ request }) => {
       password,
     });
 
-    if (res.data.session === null) {
-      return new Response(JSON.stringify({ error: "User already exists" }), {
-        status: 400,
-      });
-    }
-
     if (res.error) {
       return new Response(JSON.stringify({ error: res.error.message }), {
         status: 500,

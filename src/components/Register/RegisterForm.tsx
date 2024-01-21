@@ -24,9 +24,7 @@ function RegisterForm() {
       const data = await response.json();
 
       if (response.ok) {
-        setResponseMessage(
-          `Confirm your email verification! You will be redirected to the signin page in 5 seconds.`
-        );
+        setResponseMessage(data.message);
         setTimeout(() => {
           window.location.replace("/signin");
         }, 5000);
