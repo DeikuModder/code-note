@@ -29,11 +29,11 @@ function LoginForm() {
     <>
       <h2 className="text-3xl font-bold">Sign in</h2>
       <form
-        className="flex flex-col border border-neutral-700 p-3 rounded-xl w-9/12 aspect-square gap-8 items-center justify-center"
+        className="flex flex-col border border-neutral-700 p-3 rounded-xl w-9/12 aspect-square gap-8 items-center justify-center md:w-[400px]"
         id="signin"
         onSubmit={handleSignin}
       >
-        <label className="text-xl h-9 rounded-xl p-1">
+        <label className="text-xl h-9 rounded-xl p-1 max-w-[250px]">
           Email
           <input
             className="w-full rounded-xl h-full p-1"
@@ -42,7 +42,7 @@ function LoginForm() {
           />
         </label>
 
-        <label className="text-xl h-9 rounded-xl p-1">
+        <label className="text-xl h-9 rounded-xl p-1 max-w-[250px]">
           Password
           <input
             className="w-full rounded-xl h-full p-1"
@@ -54,9 +54,8 @@ function LoginForm() {
         <label className="w-1/3">
           <input
             type="submit"
-            value="Signin"
-            className="text-xl font-medium w-full text-slate-200 rounded-xl text-center p-1"
-            style={{ backgroundColor: "#141222" }}
+            value="Sign in"
+            className="text-xl font-medium w-full text-slate-200 rounded-lg text-center p-1 bg-neutral-900 cursor-pointer md:text-2xl"
           />
         </label>
         {errorMessage && (

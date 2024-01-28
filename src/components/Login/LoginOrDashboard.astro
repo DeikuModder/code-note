@@ -1,7 +1,7 @@
 ---
 export interface Props {
     styles?: string,
-    title?: string
+    title?: string | JSX.Element
 }
 
 const { cookies } = Astro;
@@ -13,4 +13,5 @@ const refreshToken = cookies.get("sb-refresh-token");
 
 <a href=`${accessToken && refreshToken ? "/dashboard" : "/signin"}` class=`${styles}`>
     {title}
+    <slot name="icon"/>
 </a>

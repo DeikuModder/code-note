@@ -1,5 +1,9 @@
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import type { Notes, embeddedVideoProperties } from "@/src/types";
+import { faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
+import type {
+  Notes,
+  documentationLinks,
+  embeddedVideoProperties,
+} from "@/src/types";
 import CodeSnippets from "./CodeSnippets";
 import DocumLinks from "./DocumLinks";
 import Videos from "./Videos";
@@ -20,7 +24,7 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
     array: any[],
     index: number,
     object:
-      | { documLinks?: string[] }
+      | { documLinks?: documentationLinks[] }
       | { codeSnippets?: string[] }
       | { videos_info?: embeddedVideoProperties[] }
   ) => {
@@ -39,11 +43,17 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
   };
 
   return (
-    <div className="w-full h-[100vh] bg-slate-200 absolute top-0 left-0 flex flex-col gap-9 p-4 overflow-auto">
+    <div className="w-full h-[100vh] bg-slate-200 absolute top-0 left-0 flex flex-col gap-9 p-4 overflow-auto max-w-[500px] md:fixed md:top-0 md:left-0">
       <div className="w-full flex flex-row justify-end">
-        <button onClick={onClose}>X</button>
+        <button
+          onClick={onClose}
+          className="text-2xl font-bold leading-none text-gray-700 hover:text-black focus:outline-none"
+        >
+          <FontAwesomeIcon icon={faXmark} />
+        </button>
       </div>
-      <h3>Documentation Links</h3>
+
+      <h3 className="font-bold text-2xl">Documentation Links</h3>
       <ul className="grid grid-cols-2">
         {note.documLinks && note.documLinks.length > 0 ? (
           note.documLinks.map((documLink, index, array) => {
@@ -53,7 +63,7 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
                 handleDelete={() =>
                   handleDelete(array, index, { documLinks: [] })
                 }
-                children={<DocumLinks link={documLink} />}
+                children={<DocumLinks documElement={documLink} />}
               />
             );
           })
@@ -61,7 +71,8 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
           <p>No documents links yet</p>
         )}
       </ul>
-      <h3>Videos</h3>
+
+      <h3 className="font-bold text-2xl">Videos</h3>
       <ul className="grid grid-cols-2">
         {note.videos_info && note.videos_info.length > 0 ? (
           note.videos_info.map((video, index, array) => {
@@ -79,7 +90,8 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
           <p>No videos yet</p>
         )}
       </ul>
-      <h3>Code Snippets</h3>
+
+      <h3 className="font-bold text-2xl">Code Snippets</h3>
       <ul className="grid grid-cols-2">
         {note.codeSnippets && note.codeSnippets.length > 0 ? (
           note.codeSnippets.map((codeSnippet, index, array) => {

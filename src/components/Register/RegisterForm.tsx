@@ -43,11 +43,11 @@ function RegisterForm() {
     <>
       <h2 className="text-3xl font-bold">Register</h2>
       <form
-        className="flex flex-col border border-neutral-700 p-3 rounded-xl w-9/12 aspect-square gap-8 items-center justify-center"
+        className="flex flex-col border border-neutral-700 p-3 rounded-xl w-9/12 aspect-square gap-8 items-center justify-center md:w-[400px]"
         name="register"
         onSubmit={handleSubmit}
       >
-        <label className="text-xl h-9 rounded-xl p-1">
+        <label className="text-xl h-9 rounded-xl p-1 max-w-[250px]">
           Email:
           <input
             className="w-full rounded-xl h-full p-1"
@@ -56,7 +56,7 @@ function RegisterForm() {
           />
         </label>
 
-        <label className="text-xl h-9 rounded-xl p-1">
+        <label className="text-xl h-9 rounded-xl p-1 max-w-[250px]">
           Password
           <input
             className="w-full rounded-xl h-full p-1"
@@ -65,14 +65,12 @@ function RegisterForm() {
           />
         </label>
 
-        <label className="w-1/3">
-          <input
-            type="submit"
-            value="Register"
-            className="text-xl font-medium w-full text-slate-200 rounded-xl text-center p-1"
-            style={{ backgroundColor: "#141222" }}
-          />
-        </label>
+        <button
+          type="submit"
+          className="bg-neutral-900 w-1/3 text-xl font-medium text-slate-200 rounded-lg text-center p-1 cursor-pointer md:text-2xl"
+        >
+          Register
+        </button>
         <p
           className={`mt-4 ${!responseMessage ? "hidden" : ""} ${
             errorClass ? "bg-red-700" : "bg-green-500"

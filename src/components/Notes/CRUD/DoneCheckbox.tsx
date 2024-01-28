@@ -1,20 +1,19 @@
 import { useUpdateNotes } from "@/hooks/notes";
-import type { Notes } from "@/src/types";
+import type { Notes, Status } from "@/src/types";
 import LoadingToast from "../Display/Toasts/LoadingToast";
 import SuccessToast from "../Display/Toasts/SuccessToast";
+import ErrorToast from "../Display/Toasts/ErrorToast";
 
 const DoneCheckbox = ({ note }: { note: Notes }) => {
-  const { mutate, isPending, isSuccess } = useUpdateNotes();
+  const { mutate, isPending, isSuccess, isError } = useUpdateNotes();
 
   const handleCheck = () => {
-    mutate(
-      { note: { isDone: !note.isDone }, note_id: note.id! },
-      {
-        onError: () => {
-          alert("Failed to update the note");
-        },
-      }
-    );
+    let newStatus: Status = note.status === "pending" ? "done" : "pending";
+
+    mutate({
+      note: { status: newStatus },
+      note_id: note.id!,
+    });
   };
 
   return (
@@ -26,16 +25,19 @@ const DoneCheckbox = ({ note }: { note: Notes }) => {
           <input
             type="checkbox"
             name="noteStatus"
-            defaultChecked={note.isDone}
+            defaultChecked={note.status === "done" ? true : false}
             onClick={handleCheck}
           />
         </label>
       )}
       {isSuccess && (
         <SuccessToast
-          content={`Note sucessfully ${note.isDone ? "unchecked" : "checked"}`}
+          content={`Note sucessfully ${
+            note.status === "done" ? "checked" : "unchecked"
+          }`}
         />
       )}
+      {isError && <ErrorToast content="Couldn't update note" />}
     </>
   );
 };

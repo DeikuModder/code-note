@@ -3,6 +3,8 @@ import { useMutateNotes } from "@/hooks/notes";
 import ErrorToast from "../Display/Toasts/ErrorToast";
 import SuccessToast from "../Display/Toasts/SuccessToast";
 import LoadingToast from "../Display/Toasts/LoadingToast";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 interface ModalProps {
   onClose: () => void;
@@ -18,11 +20,13 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
+    const dateDeadline = new Date(deadline);
+
     mutate(
       {
         title: title,
         priority: priority,
-        deadline: deadline,
+        deadline: dateDeadline,
         description: description,
       },
       {
@@ -35,13 +39,13 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
 
   return (
     <div className="w-full h-[100vh] bg-[#00000070] absolute top-0 left-0 flex flex-col items-center justify-center">
-      <div className="w-[60%] h-[80%] bg-slate-200 rounded-lg overflow-auto">
+      <div className="w-[80%] h-[60%] bg-slate-200 rounded-lg overflow-auto max-w-[400px]">
         <div className="w-full flex flex-row justify-end">
           <button
             onClick={onClose}
-            className="text-xl font-bold leading-none text-gray-700 hover:text-black focus:outline-none"
+            className="text-2xl font-bold leading-none text-gray-700 hover:text-black focus:outline-none"
           >
-            X
+            <FontAwesomeIcon icon={faXmark} />
           </button>
         </div>
 
@@ -93,8 +97,8 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
 
             <label>
               <textarea
-                rows={3}
-                cols={40}
+                rows={4}
+                cols={30}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 className="p-1"
@@ -103,7 +107,11 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
               />
             </label>
 
-            <button type="submit" id="submit-note">
+            <button
+              type="submit"
+              id="submit-note"
+              className="bg-neutral-900 rounded-xl p-2 text-slate-200 text-xl font-bold"
+            >
               Create note
             </button>
           </form>
@@ -123,7 +131,12 @@ const CreateNote = () => {
       {openModal ? (
         <Modal onClose={() => setOpenModal(false)} />
       ) : (
-        <button onClick={() => setOpenModal(true)}>Add note</button>
+        <button
+          onClick={() => setOpenModal(true)}
+          className="bg-neutral-900 rounded-xl p-2 text-slate-200 text-xl font-bold min-w-[129px] min-h-[48px] max-h-[48px] max-w-[129px]"
+        >
+          <FontAwesomeIcon icon={faPlusCircle} /> Add note
+        </button>
       )}
     </>
   );

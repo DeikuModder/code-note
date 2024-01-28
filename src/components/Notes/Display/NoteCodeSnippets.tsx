@@ -6,6 +6,8 @@ import { useUpdateNotes } from "@/hooks/notes";
 import WarningToast from "./Toasts/WarningToast";
 import SuccessToast from "./Toasts/SuccessToast";
 import ErrorToast from "./Toasts/ErrorToast";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NoteCodeSnippets = ({ note }: { note: Notes }) => {
   const [code, setCode] = useState("");
@@ -34,13 +36,18 @@ const NoteCodeSnippets = ({ note }: { note: Notes }) => {
   };
 
   return (
-    <div className="w-full p-8">
+    <div className="w-full p-8 border border-neutral-700 rounded-xl flex flex-col gap-4">
       <textarea
         value={code}
         onChange={(e) => setCode(e.target.value)}
-        className="w-full"
+        className="w-full p-1"
       ></textarea>
-      <button onClick={handleAdd}>Add</button>
+      <button
+        onClick={handleAdd}
+        className="bg-neutral-900 rounded-xl p-2 text-slate-200 text-lg font-bold"
+      >
+        <FontAwesomeIcon icon={faPlusCircle} /> Add code snippet
+      </button>
       {note.codeSnippets && note.codeSnippets.length > 0 ? (
         <CodeSnippets code={note.codeSnippets[note.codeSnippets.length - 1]} />
       ) : (

@@ -4,17 +4,42 @@ import PriorityColor from "../PriorityColor";
 import DoneCheckbox from "../CRUD/DoneCheckbox";
 import DeleteNote from "../CRUD/DeleteNote";
 import OpenDetails from "../CRUD/OpenDetails";
+import {
+  useCheckIsToday,
+  useDeadlinePassed,
+  useFormatedDate,
+} from "@/hooks/date";
+import { useUpdateNotes } from "@/hooks/notes";
+import { useEffect, useState } from "react";
 
 interface Props {
   note: Notes;
 }
 
 const Note: React.FC<Props> = ({ note }) => {
+  const formatedDate = note.deadline && useFormatedDate(note.deadline);
+  const { mutate } = useUpdateNotes();
+
+  useEffect(() => {
+    if (formatedDate) {
+      if (useDeadlinePassed(formatedDate)) {
+        mutate({
+          note: { status: "failed" },
+          note_id: note.id!,
+        });
+      }
+    }
+  }, []);
+
   return (
     <>
       <li
         className={`w-full border border-neutral-700 rounded-lg p-4 ${
-          note.isDone && "bg-[#01eb4f77]"
+          note.status === "done"
+            ? "bg-[#01eb4f77]"
+            : note.status === "failed"
+            ? "bg-red-500"
+            : null
         }`}
       >
         <div className="w-full flex text-start">
@@ -22,7 +47,7 @@ const Note: React.FC<Props> = ({ note }) => {
             <p>{note.title}</p>
           </div>
           <div className="w-[50%] flex justify-end gap-2 text-xl">
-            <DoneCheckbox note={note} />
+            {note.status !== "failed" ? <DoneCheckbox note={note} /> : null}
             <DeleteNote note={note} />
             <OpenDetails note={note} />
           </div>
@@ -33,7 +58,7 @@ const Note: React.FC<Props> = ({ note }) => {
             <PriorityColor priority={note.priority} />
           </div>
           <div className="w-[50%]">
-            <p>{note.deadline ?? null}</p>
+            <p>{formatedDate ?? null}</p>
           </div>
         </div>
       </li>

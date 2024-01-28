@@ -1,5 +1,6 @@
 ---
 import NotesLogic from "@/components/Notes/NotesLogic";
+import SignOut from "@/components/SignOut";
 import DashboardLayout from "@/layouts/DashboardLayout.astro";
 import { supabase } from "@/lib/supabase";
 
@@ -35,9 +36,6 @@ if (error) {
   <main class="flex flex-col items-center justify-between h-screen">
     <h1 class="text-4xl font-bold text-center">Your notes:</h1>
     <NotesLogic client:load/>
-    <form action="/api/auth/signout">
-        <button type="submit">Sign out</button>
-    </form>
-    
+    <SignOut client:load/>
   </main>
 </DashboardLayout>
