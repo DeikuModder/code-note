@@ -13,6 +13,11 @@ export enum Priority {
   notImportant = "Not Important",
 }
 
+export type documentationLinks = {
+  title: string;
+  url: string;
+};
+
 export type embeddedVideoProperties = {
   srcLink: string;
   title: string;
@@ -22,18 +27,20 @@ export interface BasicNote {
   title: string;
   priority: string;
   description?: string;
-  deadline?: string;
+  deadline?: Date;
 }
+
+export type Status = "pending" | "done" | "failed";
 
 export interface Notes {
   title: string;
   priority: string;
-  isDone: boolean;
+  status: Status;
   user_id: string;
   id?: string;
   description?: string;
-  deadline?: string;
-  documLinks?: string[];
+  deadline?: Date;
+  documLinks?: documentationLinks[];
   codeSnippets?: string[];
   videos_info?: embeddedVideoProperties[];
 }
