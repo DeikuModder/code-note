@@ -1,13 +1,18 @@
-import type { Notes, embeddedVideoProperties } from "@/src/types";
+import type {
+  Notes,
+  embeddedVideoProperties,
+  Status,
+  documentationLinks,
+} from "@/src/types";
 
 class Note implements Notes {
   title: string;
   priority: string;
-  isDone: boolean;
+  status: Status;
   user_id: string;
   description?: string;
-  deadline?: string;
-  documLinks?: string[];
+  deadline?: Date;
+  documLinks?: documentationLinks[];
   codeSnippets?: string[];
   videos_info?: embeddedVideoProperties[];
 
@@ -16,15 +21,15 @@ class Note implements Notes {
     priority: string,
     user_id: string,
     description?: string,
-    deadline?: string,
-    documLinks?: string[],
+    deadline?: Date,
+    documLinks?: documentationLinks[],
     codeSnippets?: string[],
     videos_info?: embeddedVideoProperties[]
   ) {
     this.title = title;
     this.priority = priority;
     this.user_id = user_id;
-    this.isDone = false;
+    this.status = "pending";
     this.description = description;
     this.deadline = deadline;
     this.documLinks = documLinks;
