@@ -29,8 +29,8 @@ const BaseToast: React.FC<Props> = ({
       {visible && (
         <div
           className={`${
-            visible && "visible"
-          } toast bg-white w-80 h-32 rounded-2xl shadow-xl shadow-neutral-700 absolute bottom-10 p-2 right-0 flex gap-2 transition-transform z-50`}
+            visible ? "visible" : "hidden"
+          } toast bg-white w-80 h-32 rounded-2xl shadow-xl shadow-neutral-700 fixed bottom-10 p-2 right-8 flex gap-2 transition-transform z-50`}
         >
           <div
             className={`${iconColor} w-[20%] rounded-s-2xl flex flex-col items-center justify-center text-2xl`}
