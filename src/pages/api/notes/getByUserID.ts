@@ -8,7 +8,7 @@ export const GET: APIRoute = async () => {
     const { data, error } = await supabase
       .from("Notes")
       .select("*")
-      .eq("user_id", userData.data.user?.id);
+      .eq("userID", userData.data.user?.id);
 
     if (error) {
       return new Response(JSON.stringify(error), { status: 500 });

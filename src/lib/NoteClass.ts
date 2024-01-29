@@ -9,7 +9,7 @@ class Note implements Notes {
   title: string;
   priority: string;
   status: Status;
-  user_id: string;
+  userID: string;
   description?: string;
   deadline?: Date;
   documLinks?: documentationLinks[];
@@ -19,7 +19,7 @@ class Note implements Notes {
   constructor(
     title: string,
     priority: string,
-    user_id: string,
+    userID: string,
     description?: string,
     deadline?: Date,
     documLinks?: documentationLinks[],
@@ -28,7 +28,7 @@ class Note implements Notes {
   ) {
     this.title = title;
     this.priority = priority;
-    this.user_id = user_id;
+    this.userID = userID;
     this.status = "pending";
     this.description = description;
     this.deadline = deadline;
