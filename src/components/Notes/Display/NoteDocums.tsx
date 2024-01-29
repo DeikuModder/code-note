@@ -63,7 +63,7 @@ const NoteDocums = ({ note }: { note: Notes }) => {
 
       <button
         onClick={handleAdd}
-        className="bg-neutral-900 rounded-xl p-2 text-slate-200 text-lg font-bold"
+        className="bg-neutral-900 rounded-xl p-2 text-slate-200 text-lg font-bold transition-all hover:scale-105"
       >
         <FontAwesomeIcon icon={faPlusCircle} /> Add documentation links
       </button>

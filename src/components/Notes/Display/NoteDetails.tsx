@@ -52,7 +52,7 @@ const NoteDetails: React.FC<Props> = ({ onClose, note }) => {
           <NoteCodeSnippets note={note} />
           <button
             onClick={() => setOpenList(true)}
-            className="bg-neutral-900 rounded-xl p-2 text-slate-200 text-xl font-bold"
+            className="bg-neutral-900 rounded-xl p-2 text-slate-200 text-xl font-bold transition-all hover:scale-105"
           >
             View all...
           </button>

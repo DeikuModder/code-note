@@ -44,7 +44,7 @@ const NoteCodeSnippets = ({ note }: { note: Notes }) => {
       ></textarea>
       <button
         onClick={handleAdd}
-        className="bg-neutral-900 rounded-xl p-2 text-slate-200 text-lg font-bold"
+        className="bg-neutral-900 rounded-xl p-2 text-slate-200 text-lg font-bold transition-all hover:scale-105"
       >
         <FontAwesomeIcon icon={faPlusCircle} /> Add code snippet
       </button>

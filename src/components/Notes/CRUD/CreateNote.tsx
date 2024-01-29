@@ -110,7 +110,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
             <button
               type="submit"
               id="submit-note"
-              className="bg-neutral-900 rounded-xl p-2 text-slate-200 text-xl font-bold"
+              className="bg-neutral-900 rounded-xl p-2 text-slate-200 text-xl font-bold transition-all hover:scale-105"
             >
               Create note
             </button>
@@ -133,7 +133,7 @@ const CreateNote = () => {
       ) : (
         <button
           onClick={() => setOpenModal(true)}
-          className="bg-neutral-900 rounded-xl p-2 text-slate-200 text-xl font-bold min-w-[129px] min-h-[48px] max-h-[48px] max-w-[129px]"
+          className="bg-neutral-900 rounded-xl p-2 text-slate-200 text-xl font-bold min-w-[129px] min-h-[48px] max-h-[48px] max-w-[129px] transition-all hover:scale-105"
         >
           <FontAwesomeIcon icon={faPlusCircle} /> Add note
         </button>
