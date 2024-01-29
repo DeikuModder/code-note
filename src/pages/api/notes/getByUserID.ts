@@ -5,6 +5,8 @@ export const GET: APIRoute = async () => {
   try {
     const userData = await supabase.auth.getUser();
 
+    console.log(userData.data.user?.id);
+
     const { data, error } = await supabase
       .from("Notes")
       .select("*")
