@@ -57,6 +57,7 @@ const NoteDocums = ({ note }: { note: Notes }) => {
         value={links}
         onChange={(e) => setLinks(e.target.value)}
         className="w-full p-1"
+        placeholder="Paste the url here..."
       ></textarea>
 
       {warningMessage && <WarningToast content={warningMessage} />}

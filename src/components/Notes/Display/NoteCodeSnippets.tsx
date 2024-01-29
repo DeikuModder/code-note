@@ -41,6 +41,7 @@ const NoteCodeSnippets = ({ note }: { note: Notes }) => {
         value={code}
         onChange={(e) => setCode(e.target.value)}
         className="w-full p-1"
+        placeholder="Paste your code snippet here..."
       ></textarea>
       <button
         onClick={handleAdd}

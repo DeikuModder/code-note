@@ -56,6 +56,7 @@ const NoteVideos = ({ note }: { note: Notes }) => {
         value={embedLinks}
         onChange={(e) => setEmbedLinks(e.target.value)}
         className="w-full p-1"
+        placeholder="Paste the insertion code of the videos in here..."
       ></textarea>
       <button
         onClick={handleAdd}
