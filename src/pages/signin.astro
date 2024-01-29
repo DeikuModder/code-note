@@ -15,8 +15,19 @@ if (accessToken && refreshToken) {
 ---
 
 <Layout title="CodeNote | Signin">
-    <main class="flex flex-col items-center justify-center h-screen">
+    <main class="flex flex-col items-center justify-center h-screen text-center">
         <LoginForm client:load/>
         You don't have an account? <a href="/register" class="text-blue-700">Create one!</a>
+        
+        <h2 class="font-bold text-2xl mt-16">Why do i have to create an account?</h2>
+        <div class="max-w-[600px] text-lg">
+          <p>
+            Creating an account will let you access your information in any device you connect to CodeNote, and will let you have access to future benefits like emails and notifications if one of your tasks it's reaching it's deadline.
+          </p>
+          <br/>
+          <p>
+            But if this it's not of your interest, don't worry, in future updates you'll be able to use CodeNote without creating an account, you won't be able to do any of the things said before though.
+          </p>
+        </div>
     </main>
 </Layout>
