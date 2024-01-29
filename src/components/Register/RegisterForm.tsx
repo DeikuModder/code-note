@@ -50,7 +50,7 @@ function RegisterForm() {
         <label className="text-xl h-9 rounded-xl p-1 max-w-[250px]">
           Email:
           <input
-            className="w-full rounded-xl h-full p-1"
+            className="w-full rounded-xl h-full p-1 border border-black"
             type="email"
             name="email"
           />
@@ -59,7 +59,7 @@ function RegisterForm() {
         <label className="text-xl h-9 rounded-xl p-1 max-w-[250px]">
           Password
           <input
-            className="w-full rounded-xl h-full p-1"
+            className="w-full rounded-xl h-full p-1 border border-black"
             type="password"
             name="password"
           />
@@ -67,7 +67,7 @@ function RegisterForm() {
 
         <button
           type="submit"
-          className="bg-neutral-900 w-1/3 text-xl font-medium text-slate-200 rounded-lg text-center p-1 cursor-pointer md:text-2xl"
+          className="bg-neutral-900 w-1/3 text-xl font-medium text-slate-200 rounded-lg text-center p-1 cursor-pointer md:text-2xl transition-all hover:scale-105"
         >
           Register
         </button>

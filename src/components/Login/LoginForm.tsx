@@ -36,7 +36,7 @@ function LoginForm() {
         <label className="text-xl h-9 rounded-xl p-1 max-w-[250px]">
           Email
           <input
-            className="w-full rounded-xl h-full p-1"
+            className="w-full rounded-xl h-full p-1 border border-black"
             type="email"
             name="email"
           />
@@ -45,19 +45,18 @@ function LoginForm() {
         <label className="text-xl h-9 rounded-xl p-1 max-w-[250px]">
           Password
           <input
-            className="w-full rounded-xl h-full p-1"
+            className="w-full rounded-xl h-full p-1 border border-black"
             type="password"
             name="password"
           />
         </label>
 
-        <label className="w-1/3">
-          <input
-            type="submit"
-            value="Sign in"
-            className="text-xl font-medium w-full text-slate-200 rounded-lg text-center p-1 bg-neutral-900 cursor-pointer md:text-2xl"
-          />
-        </label>
+        <button
+          className="text-xl font-medium w-1/3 text-slate-200 rounded-lg text-center p-1 bg-neutral-900 md:text-2xl transition-all hover:scale-105"
+          type="submit"
+        >
+          Sign in
+        </button>
         {errorMessage && (
           <p className="rounded-lg py-2 px-4 text-center text-white max-w-full bg-red-700">
             {errorMessage}
