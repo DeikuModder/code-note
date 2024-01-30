@@ -5,7 +5,7 @@ const SignOut = () => {
   return (
     <form action="/api/auth/signout">
       <button type="submit">
-        <FontAwesomeIcon icon={faSignOut} className="text-2xl" />
+        <FontAwesomeIcon icon={faSignOut} className="text-4xl" />
       </button>
     </form>
   );
