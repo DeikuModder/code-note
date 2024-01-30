@@ -6,7 +6,7 @@
 <section>
   <h2>What is CodeNote? 🤔</h2>
   <p>
-    CodeNote it's a fullstack todo list app, but focused on enhancing the process of managing tasks. When we have a task we generally use and research for a lot of documentation, in the form of url's to websites, videos, etc. The goal of this project it's to take all the information we may need to complete our taks, and organize them in one place
+    CodeNote it's a fullstack todo list app, focused on enhancing the process of managing tasks. When we have a task we generally use and research for a lot of documentation, in the form of url's to websites, videos, etc. The goal of this project it's to take all the information we may need to complete our taks, and organize them in one place
   </p>
 </section>
 
