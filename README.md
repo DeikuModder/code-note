@@ -56,3 +56,21 @@ npm run dev
 ```
 
 4. Open [**http://localhost:4321**](http://localhost:4321/) with your browser!
+
+### Contributing 💜
+
+At the time of contributing keep in mind the following:
+
+1. Don't mess with the folder structure 📁
+2. If you're going to add images, please remember to optimize them and for them to be in .WEBP format 🖼️
+
+I'll leave you a list of things you can contribute on if you want:
+
+<ul>
+  <li>A dark mode for the page, there's already a hook for using the local storage, you can use that! 🌙</li>
+  <li>Animations for the toasts 🍞</li>
+  <li>Show a notification toast when a note it's reaching it's deadline, but only one time 📆</li>
+</ul>
+
+And obviously if you find a bug and you want to fix it, do it with no doubt!
+   
