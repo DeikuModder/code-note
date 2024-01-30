@@ -33,8 +33,11 @@ const NoteDetails: React.FC<Props> = ({ onClose, note }) => {
         </div>
 
         <div className="w-full p-2 flex flex-col gap-4 items-center justify-center">
+          <h3 className="text-start text-5xl font-bold w-[90%]">
+            {note.title}
+          </h3>
+
           <div className="w-full grid grid-cols-2 grid-rows-2 gap-10 items-center justify-center p-8 text-lg font-medium tracking-wide text-gray-900">
-            <h3>{note.title}</h3>
             <div className="flex gap-4 ">
               Priority: <PriorityColor priority={note.priority} />
             </div>
