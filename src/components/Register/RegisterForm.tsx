@@ -41,7 +41,7 @@ function RegisterForm() {
 
   return (
     <>
-      <h2 className="text-3xl font-bold">Register</h2>
+      <h2 className="text-3xl font-bold">Sign Up</h2>
       <form
         className="flex flex-col border border-neutral-700 p-3 rounded-xl w-9/12 aspect-square gap-8 items-center justify-center md:w-[400px]"
         name="register"
@@ -69,7 +69,7 @@ function RegisterForm() {
           type="submit"
           className="bg-neutral-900 w-1/3 text-xl font-medium text-slate-200 rounded-lg text-center p-1 cursor-pointer md:text-2xl transition-all hover:scale-105"
         >
-          Register
+          Sign Up
         </button>
         <p
           className={`mt-4 ${!responseMessage ? "hidden" : ""} ${

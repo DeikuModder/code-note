@@ -1,0 +1,33 @@
+---
+
+import RegisterForm from "@/components/Register/RegisterForm";
+import Layout from "@/layouts/Layout.astro";
+
+const { cookies, redirect } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (accessToken && refreshToken) {
+  return redirect("/dashboard");
+}
+
+---
+
+<Layout title="CodeNote | Sing Up">
+    <main class="flex flex-col items-center justify-center h-screen">
+        <RegisterForm client:load/>
+        You already have an account? <a href="/signin" class="text-blue-700">Sign in!</a>
+
+        <h2 class="font-bold text-2xl mt-16">Why do i have to create an account?</h2>
+        <div class="max-w-[400px] text-lg text-pretty">
+          <p>
+            Creating an account will let you access your information in any device you connect to CodeNote, and will let you have access to future benefits like emails and notifications if one of your tasks it's reaching it's deadline.
+          </p>
+          <br/>
+          <p>
+            But if this it's not of your interest, don't worry, in future updates you'll be able to use CodeNote without creating an account, you won't be able to do any of the things said before though.
+          </p>
+        </div>
+    </main>
+</Layout>
