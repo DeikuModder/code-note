@@ -5,10 +5,7 @@ export const GET: APIRoute = async () => {
   try {
     const userData = await supabase.auth.getUser();
 
-    const { data, error } = await supabase
-      .from("Notes")
-      .select("*")
-      .eq("userID", userData.data.user?.id);
+    const { data, error } = await supabase.from("Notes").select("*");
 
     if (error) {
       return new Response(JSON.stringify(error), { status: 500 });
