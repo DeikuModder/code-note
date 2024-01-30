@@ -6,6 +6,7 @@ import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 interface Props {
   content: JSX.Element | string;
   fn: () => void;
+  onClose: () => void;
   icon?: JSX.Element;
   iconColor?: string;
   textBorderColor?: string;
@@ -14,6 +15,7 @@ interface Props {
 const AskToast: React.FC<Props> = ({
   content = null,
   fn,
+  onClose,
   icon = (
     <FontAwesomeIcon
       icon={faQuestion}
@@ -28,15 +30,14 @@ const AskToast: React.FC<Props> = ({
   const handleYes = () => {
     fn();
     setVisible(false);
+    onClose();
   };
 
   return (
     <>
       {visible && (
         <div
-          className={`${
-            visible && "visible"
-          } toast bg-white w-80 h-32 rounded-2xl shadow-xl shadow-neutral-700 fixed bottom-10 p-2 right-8 flex gap-2 transition-transform z-50`}
+          className={`bg-white w-80 h-32 rounded-2xl shadow-xl shadow-neutral-700 fixed bottom-10 p-2 right-8 flex gap-2 transition-transform z-50`}
         >
           <div
             className={`${iconColor} w-[20%] rounded-s-2xl flex flex-col items-center justify-center text-2xl`}
@@ -58,6 +59,7 @@ const AskToast: React.FC<Props> = ({
                 className="p-1 px-4 rounded-lg "
                 onClick={() => {
                   setVisible(false);
+                  onClose();
                 }}
               >
                 No

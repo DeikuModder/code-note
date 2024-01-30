@@ -41,6 +41,7 @@ const DeleteNote: React.FC<Props> = ({ note }) => {
           fn={() => {
             handleDelete(note.id!);
           }}
+          onClose={() => setOpenDeleteModal(false)}
         />
       )}
       {isPending && <LoadingToast content="Deleting note..." />}

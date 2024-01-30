@@ -29,6 +29,7 @@ const ListItem: React.FC<Props> = ({ handleDelete, children }) => {
         <AskToast
           content="Are you sure you want to delete this element?"
           fn={handleFunction}
+          onClose={() => setDeleteToast(false)}
         />
       )}
     </div>
