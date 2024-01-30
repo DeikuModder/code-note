@@ -1,8 +1,7 @@
 import { useNotes } from "@/hooks/notes";
 import { useState } from "react";
 import ListNotes from "./ListNotes";
-import WarningToast from "./Toasts/WarningToast";
-import LoadingToast from "./Toasts/LoadingToast";
+import LoadingLists from "./LoadingList/LoadingLists";
 
 const DisplayNotes = () => {
   const [actualList, setActualList] = useState("undone");
@@ -12,15 +11,23 @@ const DisplayNotes = () => {
   const failedTasks = notes.filter((note) => note.status === "failed");
 
   if (isError) {
-    return <p>An error happened</p>;
+    return (
+      <div className="w-[90%] border border-neutral-700 rounded-lg p-4 flex flex-col gap-4 min-h-80 max-w-[500px]">
+        <p className="text-2xl w-full text-center">An error happened</p>
+      </div>
+    );
   }
 
   if (isLoading) {
-    return <LoadingToast content="Loading notes..." />;
+    return <LoadingLists />;
   }
 
   if (notes?.length <= 0) {
-    return <p>No notes created yet</p>;
+    return (
+      <div className="w-[90%] border border-neutral-700 rounded-lg p-4 flex flex-col gap-4 min-h-80 max-w-[500px]">
+        <p className="text-2xl w-full text-center">No notes created yet</p>
+      </div>
+    );
   }
 
   return (
