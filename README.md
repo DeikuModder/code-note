@@ -1,8 +1,7 @@
-<header>
+<div align="center">
+  <img src="https://github.com/DeikuModder/code-note/assets/32990459/d001a75c-c02d-47ce-86c3-2d6febc20d72" alt="code-note-logo" width="auto" height="200px" />
   <h1>CodeNote 📘📙</h1>
-
-<img src="https://github.com/DeikuModder/code-note/assets/32990459/d001a75c-c02d-47ce-86c3-2d6febc20d72" alt="code-note-logo" width="300px" height="300px" />
-</header>
+</div>
 
 <section>
   <h2>What is CodeNote? 🤔</h2>
@@ -14,11 +13,11 @@
 <section>
   <h2>Web Stack 💻</h2>
   <uL>
-    <li>Astro 🟠</li>
-    <li>React :electron:</li>
-    <li>Typescript 🟦</li>
-    <li>Tailwind CSS ☁️</li>
-    <li>Supabase 🟢</li>
+    <li> <a href="https://astro.build/" target="_blank">Astro 🟠</a> </li>
+    <li><a href="https://es.react.dev/" target="_blank">React :electron:</a></li>
+    <li><a href="https://www.typescriptlang.org/" target="_blank">Typescript 🟦</a>a</li>
+    <li><a href="https://tailwindcss.com/" target="_blank">Tailwind CSS ☁️</a></li>
+    <li><a href="https://supabase.com/" target="_blank">Supabase 🟢</a></li>
   </uL>
 
   <p>
@@ -27,16 +26,33 @@
 
   <h3>Libraries</h3>
   <ul>
-    <li>date-fns 📆</li>
-    <li>FontAwesomeIcons 🖼️</li>
-    <li>React Query ⚛️</li>
-    <li>Million ⚡</li>
+    <li><a href="https://date-fns.org/" target="_blank">date-fns 📆</a></li>
+    <li><a href="https://www.npmjs.com/package//react-fontawesome" target="_blank">FontAwesomeIcons 🖼️</a></li>
+    <li><a href="https://tanstack.com/query/latest/" target="_blank">React Query ⚛️</a></li>
+    <li><a href="https://million.dev/es-ES" target="_blank">Million ⚡</a></li>
   </ul>
 </section>
 
-<section>
-  <h2>Contributing</h2>
-  <p>
-    Anyone can contribute to the project, please go check the CONTRIBUTING.md file!
-  </p>
-</section>
+## 🚀 Getting Started
+
+
+
+1. [Fork](https://github.com/DeikuModder/code-note/fork) or clone this repo
+
+```bash
+git clone git@github.com:DeikuModder/code-note.git
+```
+
+2. Install the dependencies
+
+```bash
+npm install
+```
+
+3. Run development server
+
+```bash
+npm run dev
+```
+
+4. Open [**http://localhost:4321**](http://localhost:4321/) with your browser!
