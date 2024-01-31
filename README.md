@@ -15,7 +15,7 @@
   <uL>
     <li> <a href="https://astro.build/" target="_blank">Astro 🟠</a> </li>
     <li><a href="https://es.react.dev/" target="_blank">React :electron:</a></li>
-    <li><a href="https://www.typescriptlang.org/" target="_blank">Typescript 🟦</a>a</li>
+    <li><a href="https://www.typescriptlang.org/" target="_blank">Typescript 🟦</a></li>
     <li><a href="https://tailwindcss.com/" target="_blank">Tailwind CSS ☁️</a></li>
     <li><a href="https://supabase.com/" target="_blank">Supabase 🟢</a></li>
   </uL>
