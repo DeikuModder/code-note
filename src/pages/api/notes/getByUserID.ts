@@ -3,9 +3,12 @@ import { supabase } from "@/lib/supabase";
 
 export const GET: APIRoute = async () => {
   try {
-    const userData = await supabase.auth.getUser();
+    const userData = await supabase.auth.getSession();
 
-    const { data, error } = await supabase.from("Notes").select("*");
+    const { data, error } = await supabase
+      .from("Notes")
+      .select("*")
+      .eq("userID", userData.data.session?.user.id);
 
     if (error) {
       return new Response(JSON.stringify(error), { status: 500 });
