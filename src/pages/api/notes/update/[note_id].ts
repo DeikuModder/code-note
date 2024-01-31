@@ -14,13 +14,6 @@ export const PATCH: APIRoute = async ({ request, params }) => {
       });
     }
 
-    if (note.userID !== userData.data.session?.user.id) {
-      return new Response(
-        JSON.stringify({ error: "You're note the owner of this note" }),
-        { status: 400 }
-      );
-    }
-
     const { data, error } = await supabase
       .from("Notes")
       .update(note)
