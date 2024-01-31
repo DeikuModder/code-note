@@ -36,7 +36,9 @@ const DisplayNotes = () => {
         <div className="w-[90%] max-w-[500px]">
           <button
             className={`w-[33%] ${
-              actualList === "undone" ? "border-b-4 border-orange-600" : null
+              actualList === "undone"
+                ? "border-b-4 border-orange-600"
+                : "hover:border-b-4 hover:border-orange-200"
             }`}
             onClick={() => setActualList("undone")}
           >
@@ -44,7 +46,9 @@ const DisplayNotes = () => {
           </button>
           <button
             className={`w-[33%] ${
-              actualList === "done" ? "border-b-4 border-green-600" : null
+              actualList === "done"
+                ? "border-b-4 border-green-600"
+                : "hover:border-b-4 hover:border-green-200"
             }`}
             onClick={() => setActualList("done")}
           >
@@ -52,7 +56,9 @@ const DisplayNotes = () => {
           </button>
           <button
             className={`w-[33%] ${
-              actualList === "failed" ? "border-b-4 border-red-700" : null
+              actualList === "failed"
+                ? "border-b-4 border-red-700"
+                : "hover:border-b-4 hover:border-red-200"
             }`}
             onClick={() => setActualList("failed")}
           >
