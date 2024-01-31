@@ -18,18 +18,16 @@ const DoneCheckbox = ({ note }: { note: Notes }) => {
 
   return (
     <>
-      {isPending ? (
-        <LoadingToast content="Updating note..." />
-      ) : (
-        <label>
-          <input
-            type="checkbox"
-            name="noteStatus"
-            defaultChecked={note.status === "done" ? true : false}
-            onClick={handleCheck}
-          />
-        </label>
-      )}
+      <label>
+        <input
+          type="checkbox"
+          name="noteStatus"
+          defaultChecked={note.status === "done" ? true : false}
+          onClick={handleCheck}
+          className="cursor-pointer accent-green-600 scale-125"
+        />
+      </label>
+      {isPending && <LoadingToast content="Updating note..." />}
       {isSuccess && (
         <SuccessToast
           content={`Note sucessfully ${
