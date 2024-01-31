@@ -1,6 +1,7 @@
 <div align="center">
   <img src="https://github.com/DeikuModder/code-note/assets/32990459/5971092e-69bf-49d1-9bc2-cefeaaeb35b3" alt="code-note-logo" width="auto" height="200px" />
   <h1>CodeNote 📘📕</h1>
+  <a href="#-getting-started">Getting Started</a>
 </div>
 
 <section>
