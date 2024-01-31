@@ -1,15 +1,24 @@
 import type { APIRoute } from "astro";
 import { supabase } from "@/lib/supabase";
+import type { Notes } from "@/src/types";
 
 export const PATCH: APIRoute = async ({ request, params }) => {
   try {
-    const note = await request.json();
+    const note = (await request.json()) as Partial<Notes>;
     const { note_id } = params;
+    const userData = await supabase.auth.getSession();
 
     if (!note || Object.keys(note).length <= 0) {
       return new Response(JSON.stringify({ error: "Invalid object" }), {
         status: 400,
       });
+    }
+
+    if (note.userID !== userData.data.session?.user.id) {
+      return new Response(
+        JSON.stringify({ error: "You're note the owner of this note" }),
+        { status: 400 }
+      );
     }
 
     const { data, error } = await supabase
