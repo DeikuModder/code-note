@@ -37,7 +37,7 @@ export interface Notes {
   priority: string;
   status: Status;
   userID: string;
-  id?: string;
+  _id?: string;
   description?: string;
   deadline?: Date;
   documLinks?: documentationLinks[];
