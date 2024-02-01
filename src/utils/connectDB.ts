@@ -11,7 +11,7 @@ export async function connectDB() {
       await mongoose.connect(uri, {
         dbName: "Notes",
       });
-      console.log("Connected to Database!");
+      console.log("Connected to Mongo Database!");
     } catch (error) {
       console.error(error);
     }
