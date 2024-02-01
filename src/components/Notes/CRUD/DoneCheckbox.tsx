@@ -12,7 +12,7 @@ const DoneCheckbox = ({ note }: { note: Notes }) => {
 
     mutate({
       note: { status: newStatus },
-      note_id: note.id!,
+      note_id: note._id!,
     });
   };
 
@@ -24,7 +24,7 @@ const DoneCheckbox = ({ note }: { note: Notes }) => {
           name="noteStatus"
           defaultChecked={note.status === "done" ? true : false}
           onClick={handleCheck}
-          className="cursor-pointer accent-green-600 scale-125"
+          className="cursor-pointer accent-green-600"
         />
       </label>
       {isPending && <LoadingToast content="Updating note..." />}

@@ -37,7 +37,7 @@ const NoteVideos = ({ note }: { note: Notes }) => {
               note: {
                 videos_info: result,
               },
-              note_id: note.id!,
+              note_id: note._id!,
             },
             {
               onSettled: () => {

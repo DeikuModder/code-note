@@ -39,7 +39,7 @@ const DeleteNote: React.FC<Props> = ({ note }) => {
         <AskToast
           content="Are you sure you want to delete this note?"
           fn={() => {
-            handleDelete(note.id!);
+            handleDelete(note._id!);
           }}
           onClose={() => setOpenDeleteModal(false)}
         />

@@ -5,7 +5,7 @@ import type {
   documentationLinks,
 } from "@/src/types";
 
-class Note implements Notes {
+class NoteClass implements Notes {
   title: string;
   priority: string;
   status: Status;
@@ -38,4 +38,4 @@ class Note implements Notes {
   }
 }
 
-export default Note;
+export default NoteClass;

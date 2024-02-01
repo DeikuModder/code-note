@@ -25,7 +25,7 @@ const Note: React.FC<Props> = ({ note }) => {
       if (useDeadlinePassed(formatedDate)) {
         mutate({
           note: { status: "failed" },
-          note_id: note.id!,
+          note_id: note._id!,
         });
       }
     }

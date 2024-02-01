@@ -35,7 +35,7 @@ const NoteDocums = ({ note }: { note: Notes }) => {
 
         "message" in result
           ? setWarningMessage(result.message)
-          : mutate({ note: { documLinks: result }, note_id: note.id! });
+          : mutate({ note: { documLinks: result }, note_id: note._id! });
       }
     } catch (error) {
       setWarningMessage("Please enter a valid url");

@@ -26,7 +26,7 @@ const NoteCodeSnippets = ({ note }: { note: Notes }) => {
     "message" in result
       ? setWarningMessage(result.message)
       : mutate(
-          { note: { codeSnippets: result }, note_id: note.id! },
+          { note: { codeSnippets: result }, note_id: note._id! },
           {
             onSettled: () => {
               setCode("");
