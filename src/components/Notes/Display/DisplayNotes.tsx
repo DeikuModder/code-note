@@ -6,9 +6,6 @@ import LoadingLists from "./LoadingList/LoadingLists";
 const DisplayNotes = () => {
   const [actualList, setActualList] = useState("undone");
   const { isLoading, isError, data: notes = [] } = useNotes();
-  const undoneTasks = notes.filter((note) => note.status === "pending");
-  const doneTasks = notes.filter((note) => note.status === "done");
-  const failedTasks = notes.filter((note) => note.status === "failed");
 
   if (isError) {
     return (
@@ -29,6 +26,13 @@ const DisplayNotes = () => {
       </div>
     );
   }
+
+  const undoneTasks =
+    notes.length > 0 && notes.filter((note) => note.status === "pending");
+  const doneTasks =
+    notes.length > 0 && notes.filter((note) => note.status === "done");
+  const failedTasks =
+    notes.length > 0 && notes.filter((note) => note.status === "failed");
 
   return (
     <>
