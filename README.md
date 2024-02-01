@@ -1,6 +1,9 @@
 <div align="center">
   <img src="https://github.com/DeikuModder/code-note/assets/32990459/5971092e-69bf-49d1-9bc2-cefeaaeb35b3" alt="code-note-logo" width="auto" height="200px" />
   <h1>CodeNote 📘📕</h1>
+  <a href="#-getting-started">Getting Started</a>
+  -
+  <a href="#contributing-">Contributing</a>
 </div>
 
 <section>
@@ -15,7 +18,7 @@
   <uL>
     <li> <a href="https://astro.build/" target="_blank">Astro 🟠</a> </li>
     <li><a href="https://es.react.dev/" target="_blank">React :electron:</a></li>
-    <li><a href="https://www.typescriptlang.org/" target="_blank">Typescript 🟦</a>a</li>
+    <li><a href="https://www.typescriptlang.org/" target="_blank">Typescript 🟦</a></li>
     <li><a href="https://tailwindcss.com/" target="_blank">Tailwind CSS ☁️</a></li>
     <li><a href="https://supabase.com/" target="_blank">Supabase 🟢</a></li>
   </uL>
