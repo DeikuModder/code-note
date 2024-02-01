@@ -25,6 +25,7 @@
     "astro": "^4.0.8",
     "date-fns": "^3.3.1",
     "million": "^2.6.4",
+    "mongoose": "^8.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwindcss": "^3.4.0"
