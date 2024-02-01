@@ -39,7 +39,7 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
 
     "error" in result
       ? console.log(result.error)
-      : mutate({ note: objectNote, note_id: note.id! });
+      : mutate({ note: objectNote, note_id: note._id! });
   };
 
   return (
