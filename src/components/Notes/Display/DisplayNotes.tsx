@@ -27,67 +27,66 @@ const DisplayNotes = () => {
     );
   }
 
-  const undoneTasks =
-    notes.length > 0 && notes.filter((note) => note.status === "pending");
-  const doneTasks =
-    notes.length > 0 && notes.filter((note) => note.status === "done");
-  const failedTasks =
-    notes.length > 0 && notes.filter((note) => note.status === "failed");
+  if (notes.length > 0) {
+    const undoneTasks = notes.filter((note) => note.status === "pending");
+    const doneTasks = notes.filter((note) => note.status === "done");
+    const failedTasks = notes.filter((note) => note.status === "failed");
 
-  return (
-    <>
-      <div className="w-full flex flex-col items-center gap-2">
-        <div className="w-[90%] max-w-[500px]">
-          <button
-            className={`w-[33%] ${
-              actualList === "undone"
-                ? "border-b-4 border-orange-600"
-                : "hover:border-b-4 hover:border-orange-200"
-            }`}
-            onClick={() => setActualList("undone")}
-          >
-            Undone ({undoneTasks.length})
-          </button>
-          <button
-            className={`w-[33%] ${
-              actualList === "done"
-                ? "border-b-4 border-green-600"
-                : "hover:border-b-4 hover:border-green-200"
-            }`}
-            onClick={() => setActualList("done")}
-          >
-            Done ({doneTasks.length})
-          </button>
-          <button
-            className={`w-[33%] ${
-              actualList === "failed"
-                ? "border-b-4 border-red-700"
-                : "hover:border-b-4 hover:border-red-200"
-            }`}
-            onClick={() => setActualList("failed")}
-          >
-            Failed ({failedTasks.length})
-          </button>
+    return (
+      <>
+        <div className="w-full flex flex-col items-center gap-2">
+          <div className="w-[90%] max-w-[500px]">
+            <button
+              className={`w-[33%] ${
+                actualList === "undone"
+                  ? "border-b-4 border-orange-600"
+                  : "hover:border-b-4 hover:border-orange-200"
+              }`}
+              onClick={() => setActualList("undone")}
+            >
+              Undone ({undoneTasks.length})
+            </button>
+            <button
+              className={`w-[33%] ${
+                actualList === "done"
+                  ? "border-b-4 border-green-600"
+                  : "hover:border-b-4 hover:border-green-200"
+              }`}
+              onClick={() => setActualList("done")}
+            >
+              Done ({doneTasks.length})
+            </button>
+            <button
+              className={`w-[33%] ${
+                actualList === "failed"
+                  ? "border-b-4 border-red-700"
+                  : "hover:border-b-4 hover:border-red-200"
+              }`}
+              onClick={() => setActualList("failed")}
+            >
+              Failed ({failedTasks.length})
+            </button>
+          </div>
+          {actualList === "done" ? (
+            <ListNotes
+              notes={doneTasks}
+              fallbackMessage="No finished tasks yet"
+            />
+          ) : actualList === "failed" ? (
+            <ListNotes
+              notes={failedTasks}
+              fallbackMessage="No failed tasks yet"
+            />
+          ) : (
+            <ListNotes
+              notes={undoneTasks}
+              fallbackMessage="No tasks created yet"
+            />
+          )}
         </div>
-        {actualList === "done" ? (
-          <ListNotes
-            notes={doneTasks}
-            fallbackMessage="No finished tasks yet"
-          />
-        ) : actualList === "failed" ? (
-          <ListNotes
-            notes={failedTasks}
-            fallbackMessage="No failed tasks yet"
-          />
-        ) : (
-          <ListNotes
-            notes={undoneTasks}
-            fallbackMessage="No tasks created yet"
-          />
-        )}
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 };
 
 export default DisplayNotes;
