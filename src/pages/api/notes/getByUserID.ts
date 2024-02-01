@@ -1,20 +1,22 @@
 import type { APIRoute } from "astro";
 import { supabase } from "@/lib/supabase";
+import type { Notes } from "@/src/types";
+import Note from "@/schemas/Note";
+import { connectDB } from "@/utils/connectDB";
 
 export const GET: APIRoute = async () => {
   try {
+    connectDB();
+
     const userData = await supabase.auth.getSession();
 
-    const { data, error } = await supabase
-      .from("Notes")
-      .select("*")
-      .eq("userID", userData.data.session?.user.id);
+    const notes: Notes[] | undefined = await Note.find({
+      userID: userData.data.session?.user.id,
+    });
 
-    if (error) {
-      return new Response(JSON.stringify(error), { status: 500 });
-    }
-
-    return new Response(JSON.stringify(data), { status: 200 });
+    return new Response(JSON.stringify(notes), {
+      status: 200,
+    });
   } catch (error) {
     return new Response(JSON.stringify({ error: error }), { status: 500 });
   }

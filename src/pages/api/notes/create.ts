@@ -1,15 +1,18 @@
 import type { APIRoute } from "astro";
 import { supabase } from "@/lib/supabase";
-import Note from "@/lib/NoteClass";
+import NoteClass from "@/lib/NoteClass";
 import type { Notes } from "@/src/types";
+import Note from "@/schemas/Note";
+import { connectDB } from "@/utils/connectDB";
 
 export const POST: APIRoute = async ({ request }) => {
   try {
+    connectDB();
+
     const noteData = (await request.json()) as Notes;
 
     const userData = await supabase.auth.getSession();
 
-    //validations
     if (!noteData.title || !noteData.priority) {
       return new Response("Missing title or priority", { status: 400 });
     }
@@ -18,7 +21,7 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response("No authenitcated user", { status: 400 });
     }
 
-    const note = new Note(
+    const note = new NoteClass(
       noteData.title,
       noteData.priority,
       userData.data.session.user.id,
@@ -26,18 +29,11 @@ export const POST: APIRoute = async ({ request }) => {
       noteData.deadline
     );
 
-    const { data, error } = await supabase
-      .from("Notes")
-      .insert([note])
-      .select();
+    const newNote = new Note(note);
 
-    if (error) {
-      return new Response(JSON.stringify({ error: error.message }), {
-        status: 500,
-      });
-    }
+    const result = await newNote.save();
 
-    return new Response(JSON.stringify(data), { status: 201 });
+    return new Response(JSON.stringify(result), { status: 201 });
   } catch (error) {
     return new Response(JSON.stringify({ error: error }), { status: 500 });
   }
