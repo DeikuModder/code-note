@@ -26,6 +26,7 @@ export type embeddedVideoProperties = {
 export interface BasicNote {
   title: string;
   priority: string;
+  userID: string;
   description?: string;
   deadline?: Date;
 }
