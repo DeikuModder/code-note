@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 export async function connectDB() {
-  const uri = `mongodb+srv://${import.meta.env.VITE_DB_USERNAME}:${
-    import.meta.env.VITE_DB_PASSWORD
+  const uri = `mongodb+srv://${import.meta.env.DB_USERNAME}:${
+    import.meta.env.DB_PASSWORD
   }@burguer-app.nj6tkpl.mongodb.net/?retryWrites=true&w=majority`;
   async function connect() {
     try {
