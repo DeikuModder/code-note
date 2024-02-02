@@ -1,10 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
-import dotenv from "dotenv";
 
-dotenv.config();
-
-const uri = process.env.SUPABASE_URL as string;
-const anonKey = process.env.SUPABASE_ANON_KEY as string;
+const uri = import.meta.env.VITE_SUPABASE_URL;
+const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 export const supabase = createClient(uri, anonKey, {
   auth: {
