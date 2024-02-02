@@ -2,10 +2,11 @@ import { useNotes } from "@/hooks/notes";
 import { useState } from "react";
 import ListNotes from "./ListNotes";
 import LoadingLists from "./LoadingList/LoadingLists";
+import type { Notes } from "@/src/types";
 
-const DisplayNotes = () => {
+const DisplayNotes = ({ userID }: { userID: string }) => {
   const [actualList, setActualList] = useState("undone");
-  const { isLoading, isError, data: notes = [] } = useNotes();
+  const { isLoading, isError, data: notes = [] } = useNotes(userID);
 
   if (isError) {
     return (

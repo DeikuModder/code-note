@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import { supabase } from "@/lib/supabase";
 import NoteClass from "@/lib/NoteClass";
-import type { Notes } from "@/src/types";
+import type { BasicNote, Notes } from "@/src/types";
 import Note from "@/schemas/Note";
 import { connectDB } from "@/utils/connectDB";
 
@@ -9,7 +9,7 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     connectDB();
 
-    const noteData = (await request.json()) as Notes;
+    const noteData = (await request.json()) as BasicNote;
 
     const userData = await supabase.auth.getSession();
 
@@ -24,7 +24,7 @@ export const POST: APIRoute = async ({ request }) => {
     const note = new NoteClass(
       noteData.title,
       noteData.priority,
-      userData.data.session.user.id,
+      noteData.userID,
       noteData.description,
       noteData.deadline
     );

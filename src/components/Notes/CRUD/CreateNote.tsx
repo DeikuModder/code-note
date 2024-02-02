@@ -8,9 +8,10 @@ import { faPlusCircle, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 interface ModalProps {
   onClose: () => void;
+  userID: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ onClose }) => {
+const Modal: React.FC<ModalProps> = ({ onClose, userID }) => {
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("");
   const [deadline, setDeadline] = useState("");
@@ -26,6 +27,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
       {
         title: title,
         priority: priority,
+        userID: userID,
         deadline: dateDeadline,
         description: description,
       },
@@ -123,13 +125,13 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
   );
 };
 
-const CreateNote = () => {
+const CreateNote = ({ userID }: { userID: string }) => {
   const [openModal, setOpenModal] = useState(false);
 
   return (
     <>
       {openModal ? (
-        <Modal onClose={() => setOpenModal(false)} />
+        <Modal onClose={() => setOpenModal(false)} userID={userID} />
       ) : (
         <button
           onClick={() => setOpenModal(true)}

@@ -13,9 +13,6 @@ export function useMutateNotes() {
   return useMutation({
     mutationFn: postNote,
     onSuccess: (note) => {
-      queryClient.setQueryData([key], (prevNotes: Notes[]) =>
-        prevNotes.concat(note)
-      );
       queryClient.invalidateQueries({ queryKey: [key] });
     },
   });
@@ -43,18 +40,9 @@ export function useUpdateNotes() {
   });
 }
 
-export function useNotes() {
+export function useNotes(userID: string) {
   return useQuery<Notes[]>({
     queryKey: [key],
-    queryFn: async () => await getUserNotes(),
-  });
-}
-
-export function useCacheNotes() {
-  const queryClient = useQueryClient();
-
-  return useQuery({
-    queryKey: [key],
-    queryFn: () => queryClient.getQueryData([key]),
+    queryFn: async () => await getUserNotes(userID),
   });
 }

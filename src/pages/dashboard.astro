@@ -13,7 +13,7 @@ if (!accessToken || !refreshToken) {
   return redirect("/signin");
 }
 
-const { error } = await supabase.auth.setSession({
+const { data, error } = await supabase.auth.setSession({
   refresh_token: refreshToken.value,
   access_token: accessToken.value,
 });
@@ -29,13 +29,12 @@ if (error) {
   return redirect("/signin");
 
 }
-
 ---
 
 <DashboardLayout title="CodeNote | Dashboard">
   <main class="flex flex-col items-center justify-between h-screen">
     <h1 class="text-5xl font-bold text-center mt-4">Your notes 📒</h1>
-    <NotesLogic client:load/>
+    <NotesLogic userID={data?.user?.id!} client:load/>
     <SignOut client:load/>
   </main>
 </DashboardLayout>

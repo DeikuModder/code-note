@@ -1,8 +1,6 @@
-
-
-const getUserNotes = async () => {
+const getUserNotes = async (userID: string) => {
   try {
-    const response = await fetch("/api/notes/getByUserID");
+    const response = await fetch(`/api/notes/get/${userID}`);
 
     const data = await response.json();
 
@@ -15,7 +13,7 @@ const getUserNotes = async () => {
 
     return data;
   } catch (error) {
-    return JSON.stringify({ error: error });
+    console.log(error);
   }
 };
 
