@@ -54,7 +54,7 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
       </div>
 
       <h3 className="font-bold text-2xl">Documentation Links 🔗</h3>
-      <ul className="grid grid-cols-2">
+      <ul className="grid grid-cols-2 gap-4">
         {note.documLinks && note.documLinks.length > 0 ? (
           note.documLinks.map((documLink, index, array) => {
             return (
@@ -73,7 +73,7 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
       </ul>
 
       <h3 className="font-bold text-2xl">Videos ⏯️</h3>
-      <ul className="grid grid-cols-2">
+      <ul className="grid grid-cols-2 gap-4">
         {note.videos_info && note.videos_info.length > 0 ? (
           note.videos_info.map((video, index, array) => {
             return (
@@ -92,7 +92,7 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
       </ul>
 
       <h3 className="font-bold text-2xl">Code Snippets 👩‍💻</h3>
-      <ul className="grid grid-cols-2">
+      <ul className="grid grid-cols-2 gap-4">
         {note.codeSnippets && note.codeSnippets.length > 0 ? (
           note.codeSnippets.map((codeSnippet, index, array) => {
             return (
