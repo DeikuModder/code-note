@@ -20,7 +20,8 @@
     <li><a href="https://es.react.dev/" target="_blank">React :electron:</a></li>
     <li><a href="https://www.typescriptlang.org/" target="_blank">Typescript 🟦</a></li>
     <li><a href="https://tailwindcss.com/" target="_blank">Tailwind CSS ☁️</a></li>
-    <li><a href="https://supabase.com/" target="_blank">Supabase 🟢</a></li>
+    <li><a href="https://supabase.com/" target="_blank">Supabase 🟢</a> for user management</li>
+    <li><a href="https://www.mongodb.com/es" target="_blank">MongoDB 🥬</a> for storing data</li>
   </uL>
 
   <p>
@@ -33,6 +34,7 @@
     <li><a href="https://www.npmjs.com/package//react-fontawesome" target="_blank">FontAwesomeIcons 🖼️</a></li>
     <li><a href="https://tanstack.com/query/latest/" target="_blank">React Query ⚛️</a></li>
     <li><a href="https://million.dev/es-ES" target="_blank">Million ⚡</a></li>
+    <li><a href="https://mongoosejs.com/" target="_blank">Mongoose 🍏</a></li>
   </ul>
 </section>
 
@@ -61,6 +63,17 @@ npm run dev
 4. Open [**http://localhost:4321**](http://localhost:4321/) with your browser!
 
 ### Contributing 💜
+
+First you need to check the .env.EXAMPLE file to check what are the enviroment variables you need to get the project going, there you'll find the public credentials you need for Supabase, and an example on MongoDB credentials.
+
+## Create a MongoDB account
+
+In order to test the project with a db, you'll need to create one yourself, this is very easy and fast, i'll leave you a link on getting started on MongoDB, as well as a free course form Studio3T
+
+- https://www.mongodb.com/docs/manual/tutorial/getting-started/
+- https://studio3t.com/academy/courses/mongodb-101-getting-started/
+
+In case you'd like to contribute directly with the official db of the project you'll need to contact me.
 
 At the time of contributing keep in mind the following:
 
