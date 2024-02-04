@@ -75,6 +75,10 @@ In order to test the project with a db, you'll need to create one yourself, this
 
 In case you'd like to contribute directly with the official db of the project you'll need to contact me.
 
+In order to test with the AI, you'll need to create an account on Cohere, and generate your API Key
+
+- https://docs.cohere.com/
+
 At the time of contributing keep in mind the following:
 
 1. Don't mess with the folder structure 📁
