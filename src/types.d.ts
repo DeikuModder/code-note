@@ -45,3 +45,30 @@ export interface Notes {
   codeSnippets?: string[];
   videos_info?: embeddedVideoProperties[];
 }
+
+export interface Generation {
+  id: string;
+  generations: GenerationElement[];
+  prompt: string;
+  meta: Meta;
+}
+
+export interface GenerationElement {
+  id: string;
+  text: string;
+  finish_reason: string;
+}
+
+export interface Meta {
+  apiVersion: APIVersion;
+  billedUnits: BilledUnits;
+}
+
+export interface APIVersion {
+  version: string;
+}
+
+export interface BilledUnits {
+  inputTokens: number;
+  outputTokens: number;
+}
