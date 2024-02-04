@@ -23,6 +23,7 @@
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
     "astro": "^4.0.8",
+    "cohere-ai": "^7.7.5",
     "date-fns": "^3.3.1",
     "million": "^2.6.4",
     "mongoose": "^8.1.1",
