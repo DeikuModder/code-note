@@ -9,6 +9,7 @@ import { useFormatedDate } from "@/hooks/date";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LoadingToast from "./Toasts/LoadingToast";
+import AISuggestions from "./AISuggestions";
 
 interface Props {
   onClose: () => void;
@@ -36,6 +37,8 @@ const NoteDetails: React.FC<Props> = ({ onClose, note }) => {
           <h3 className="text-start text-5xl font-bold w-[90%]">
             {note.title}
           </h3>
+
+          <AISuggestions taskTitle={note.title} />
 
           <div className="w-full grid grid-cols-2 grid-rows-2 gap-10 items-center justify-center p-8 text-lg font-medium tracking-wide text-gray-900">
             <div className="flex gap-4 ">
