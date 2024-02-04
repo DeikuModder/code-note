@@ -1,7 +1,6 @@
 import { useState, type FormEventHandler } from "react";
 import { useMutateNotes } from "@/hooks/notes";
 import ErrorToast from "../Display/Toasts/ErrorToast";
-import SuccessToast from "../Display/Toasts/SuccessToast";
 import LoadingToast from "../Display/Toasts/LoadingToast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle, faXmark } from "@fortawesome/free-solid-svg-icons";
