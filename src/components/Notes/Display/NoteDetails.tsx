@@ -38,7 +38,11 @@ const NoteDetails: React.FC<Props> = ({ onClose, note }) => {
             {note.title}
           </h3>
 
-          <AISuggestions taskTitle={note.title} />
+          <AISuggestions
+            taskTitle={note.title}
+            prompt={`Summarize in less than 150 words what's the best way to approach ${note.title} task`}
+            message="Ask AI the best way to approach this task:"
+          />
 
           <div className="w-full grid grid-cols-2 grid-rows-2 gap-10 items-center justify-center p-8 text-lg font-medium tracking-wide text-gray-900">
             <div className="flex gap-4 ">
