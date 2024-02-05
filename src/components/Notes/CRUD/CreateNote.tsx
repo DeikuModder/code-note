@@ -1,9 +1,10 @@
-import { useState, type FormEventHandler } from "react";
+import { useState, type FormEventHandler, useEffect } from "react";
 import { useMutateNotes } from "@/hooks/notes";
 import ErrorToast from "../Display/Toasts/ErrorToast";
 import LoadingToast from "../Display/Toasts/LoadingToast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle, faXmark } from "@fortawesome/free-solid-svg-icons";
+import AISuggestions from "../Display/AISuggestions";
 
 interface ModalProps {
   onClose: () => void;
@@ -15,7 +16,16 @@ const Modal: React.FC<ModalProps> = ({ onClose, userID }) => {
   const [priority, setPriority] = useState("");
   const [deadline, setDeadline] = useState("");
   const [description, setDescription] = useState("");
+  const [isTitle, setIsTitle] = useState(false);
   const { mutate, isError, isPending } = useMutateNotes();
+
+  useEffect(() => {
+    if (title) {
+      setIsTitle(true);
+    } else {
+      setIsTitle(false);
+    }
+  }, [title]);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -40,7 +50,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, userID }) => {
 
   return (
     <div className="w-full h-[100vh] bg-[#00000070] absolute top-0 left-0 flex flex-col items-center justify-center">
-      <div className="w-[80%] h-[60%] bg-slate-200 rounded-lg overflow-auto max-w-[400px]">
+      <div className="w-[80%] h-[70%] bg-slate-200 rounded-lg max-w-[400px]">
         <div className="w-full flex flex-row justify-end">
           <button
             onClick={onClose}
@@ -116,6 +126,13 @@ const Modal: React.FC<ModalProps> = ({ onClose, userID }) => {
               Create note
             </button>
           </form>
+          {isTitle && (
+            <AISuggestions
+              taskTitle={`Description for ${title}`}
+              prompt={`Generate a brief description in less than 100 words for ${title}`}
+              message="Generate a description with AI"
+            />
+          )}
         </div>
       </div>
       {isPending && <LoadingToast content="Creating note..." />}
