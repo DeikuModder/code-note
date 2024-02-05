@@ -5,13 +5,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import CopyToClipboard from "../CopyToClipboard";
 
 interface AIModalProps {
   onClose: () => void;
   taskTitle: string;
+  prompt: string;
 }
 
-const AIModal: React.FC<AIModalProps> = ({ onClose, taskTitle }) => {
+const AIModal: React.FC<AIModalProps> = ({ onClose, taskTitle, prompt }) => {
   const [suggestion, setSuggestion] = useState("");
   const [loading, setIsLoading] = useState(false);
 
@@ -26,18 +28,20 @@ const AIModal: React.FC<AIModalProps> = ({ onClose, taskTitle }) => {
           method: "POST",
           headers: { "Content-Type": "application-json" },
           body: JSON.stringify({
-            prompt: `What's the best way to approach ${taskTitle} task?`,
+            prompt: prompt,
           }),
           signal: controller?.signal,
         });
 
-        const data = (await response.json()) as Generation;
+        const data = (await response.json()) as string;
 
-        setSuggestion(data.generations && data.generations[0].text);
+        setSuggestion(data);
 
         controller = null;
       } catch (error) {
-        setSuggestion("");
+        setSuggestion(
+          "Internet connection may be too slow, or an error happened :("
+        );
         console.error(error);
       } finally {
         setIsLoading(false);
@@ -50,7 +54,7 @@ const AIModal: React.FC<AIModalProps> = ({ onClose, taskTitle }) => {
   }, []);
 
   return (
-    <div className="absolute top-0 right-0 m-4 p-4 text-slate-200 bg-stone-800 w-[350px] max-w-[400px] max-h-[500px] flex flex-col items-center rounded-lg overflow-auto">
+    <div className="absolute top-0 right-0 m-2 p-4 text-slate-200 bg-stone-800 w-[350px] max-w-[400px] max-h-[500px] flex flex-col items-center rounded-lg overflow-auto">
       <div className="w-full flex flex-row justify-end">
         <button
           onClick={onClose}
@@ -59,9 +63,12 @@ const AIModal: React.FC<AIModalProps> = ({ onClose, taskTitle }) => {
           <FontAwesomeIcon icon={faXmark} />
         </button>
       </div>
-      <h2 className="font-bold bg-neutral-950 rounded-lg mb-2">
-        `"{taskTitle}?"
-      </h2>
+      <div className="w-full flex gap-2">
+        <h2 className="font-bold bg-neutral-950 rounded-lg mb-2">
+          `"{taskTitle}"
+        </h2>
+        {suggestion && <CopyToClipboard content={suggestion} />}
+      </div>
       {suggestion && (
         <>
           <p className="text-start">{suggestion}</p>
@@ -79,18 +86,26 @@ const AIModal: React.FC<AIModalProps> = ({ onClose, taskTitle }) => {
   );
 };
 
-const AISuggestions: React.FC<Pick<AIModalProps, "taskTitle">> = ({
-  taskTitle,
-}) => {
+interface Props {
+  taskTitle: string;
+  prompt: string;
+  message?: string;
+}
+
+const AISuggestions: React.FC<Props> = ({ taskTitle, prompt, message }) => {
   const [openModal, setOpenModal] = useState(false);
 
   return (
     <>
       {openModal ? (
-        <AIModal onClose={() => setOpenModal(false)} taskTitle={taskTitle} />
+        <AIModal
+          onClose={() => setOpenModal(false)}
+          taskTitle={taskTitle}
+          prompt={prompt}
+        />
       ) : (
         <div className="flex p-6 md:gap-4">
-          <p className="text-lg">Ask AI the best way to approach this task:</p>
+          <p className="text-lg">{message}</p>
           <button onClick={() => setOpenModal(true)}>
             <FontAwesomeIcon icon={faMagicWandSparkles} />
           </button>
