@@ -1,4 +1,4 @@
-import generateSuggestion from "@/services/generateSuggestion";
+import type { Generation } from "@/src/types";
 import {
   faMagicWandSparkles,
   faXmark,
@@ -22,14 +22,20 @@ const AIModal: React.FC<AIModalProps> = ({ onClose, taskTitle }) => {
       try {
         setIsLoading(true);
 
-        const data = await generateSuggestion(
-          `What's the best way to approach ${taskTitle} task?`,
-          controller
-        );
+        const response = await fetch("/api/notes/ai/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application-json" },
+          body: JSON.stringify({
+            prompt: `What's the best way to approach ${taskTitle} task?`,
+          }),
+          signal: controller?.signal,
+        });
 
-        if (typeof data !== "string") {
-          setSuggestion(data.generations[0].text);
-        }
+        const data = (await response.json()) as Generation;
+
+        setSuggestion(data.generations && data.generations[0].text);
+
+        controller = null;
       } catch (error) {
         setSuggestion("");
         console.error(error);
@@ -40,10 +46,7 @@ const AIModal: React.FC<AIModalProps> = ({ onClose, taskTitle }) => {
 
     getSuggestion();
 
-    return () => {
-      setSuggestion("");
-      controller?.abort();
-    };
+    return () => controller?.abort();
   }, []);
 
   return (
