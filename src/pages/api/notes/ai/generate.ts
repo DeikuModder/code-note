@@ -1,20 +1,29 @@
 import { cohere } from "@/lib/cohereClient";
 import type { Generation } from "@/src/types";
+import { SSE } from "@/utils/sse";
 import type { APIRoute } from "astro";
 
-export const POST: APIRoute = async ({ request }) => {
+export const GET: APIRoute = async ({ request }) => {
   try {
-    const data = (await request.json()) as { prompt: string };
+    const url = new URL(request.url);
+    const prompt = url.searchParams.get("prompt");
 
-    const generate = (await cohere.generate({
-      prompt: data.prompt,
-      model: "command-light",
-      maxTokens: 150,
-      temperature: 0.5,
-    })) as Generation;
+    if (!prompt) {
+      return new Response("Missing 'prompt' parameter", { status: 400 });
+    }
 
-    return new Response(JSON.stringify(generate.generations[0].text), {
-      status: 200,
+    return SSE({ request }, async (sendEvent) => {
+      const response = await cohere.generateStream({
+        prompt: prompt as string,
+      });
+
+      for await (const part of response) {
+        if (part.eventType === "text-generation") {
+          sendEvent(part.text);
+        }
+      }
+
+      sendEvent("END");
     });
   } catch (error) {
     return new Response(JSON.stringify({ error: "Couldn't get response" }), {
