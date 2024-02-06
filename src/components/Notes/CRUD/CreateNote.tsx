@@ -129,7 +129,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, userID }) => {
           {isTitle && (
             <AISuggestions
               taskTitle={`Description for ${title}`}
-              prompt={`Generate a brief description in less than 100 words for ${title}`}
+              prompt={`I'm facing the following task: ${title}, please, summarize a description with no more than 100 words for what this task means`}
               message="Generate a description with AI"
             />
           )}

@@ -40,7 +40,7 @@ const NoteDetails: React.FC<Props> = ({ onClose, note }) => {
 
           <AISuggestions
             taskTitle={note.title}
-            prompt={`Summarize in less than 150 words what's the best way to approach ${note.title} task`}
+            prompt={`I have the following task: ${note.title}, tell me what would be the best way to approach this task`}
             message="Ask AI the best way to approach this task:"
           />
 
