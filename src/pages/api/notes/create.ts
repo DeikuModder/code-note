@@ -11,14 +11,8 @@ export const POST: APIRoute = async ({ request }) => {
 
     const noteData = (await request.json()) as BasicNote;
 
-    const userData = await supabase.auth.getSession();
-
-    if (!noteData.title || !noteData.priority) {
+    if (!noteData.title || !noteData.priority || !noteData.userID) {
       return new Response("Missing title or priority", { status: 400 });
-    }
-
-    if (!userData.data.session?.user) {
-      return new Response("No authenitcated user", { status: 400 });
     }
 
     const note = new NoteClass(
