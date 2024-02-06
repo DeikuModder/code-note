@@ -44,6 +44,9 @@ const Modal: React.FC<ModalProps> = ({ onClose, userID }) => {
         onSuccess: () => {
           onClose();
         },
+        onError: (e) => {
+          console.error(e);
+        },
       }
     );
   };
