@@ -17,44 +17,40 @@ const AIModal: React.FC<AIModalProps> = ({ onClose, taskTitle, prompt }) => {
   const [suggestion, setSuggestion] = useState("");
   const [loading, setIsLoading] = useState(false);
 
+  let answer = "";
+
   useEffect(() => {
-    let controller: null | AbortController = new AbortController();
+    try {
+      setIsLoading(true);
+      const searchParams = new URLSearchParams();
+      searchParams.append("prompt", prompt);
 
-    const getSuggestion = async () => {
-      try {
-        setIsLoading(true);
+      const eventSource = new EventSource(
+        `api/notes/ai/generate?${searchParams.toString()}`
+      );
 
-        const response = await fetch("/api/notes/ai/generate", {
-          method: "POST",
-          headers: { "Content-Type": "application-json" },
-          body: JSON.stringify({
-            prompt: prompt,
-          }),
-          signal: controller?.signal,
-        });
-
-        const data = (await response.json()) as string;
-
-        setSuggestion(data);
-
-        controller = null;
-      } catch (error) {
-        setSuggestion(
-          "Internet connection may be too slow, or an error happened :("
-        );
-        console.error(error);
-      } finally {
+      eventSource.onmessage = (e) => {
         setIsLoading(false);
-      }
-    };
+        const incomingData = JSON.parse(e.data);
 
-    getSuggestion();
+        if (incomingData === "END") {
+          eventSource.close();
+          return;
+        }
 
-    return () => controller?.abort();
+        answer += incomingData;
+
+        setSuggestion(answer);
+      };
+    } catch (error) {
+      setSuggestion("An error happened");
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
   return (
-    <div className="absolute top-0 right-0 m-2 p-4 text-slate-200 bg-stone-800 w-[350px] max-w-[400px] max-h-[500px] flex flex-col items-center rounded-lg overflow-auto">
+    <div className="absolute top-0 left-0 m-2 p-4 text-slate-200 bg-stone-800 w-[350px] max-h-[500px] flex flex-col items-center rounded-lg overflow-auto md:w-[500px]">
       <div className="w-full flex flex-row justify-end">
         <button
           onClick={onClose}
