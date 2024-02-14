@@ -3,7 +3,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Suspense, lazy, useState } from "react";
 import LoadingToast from "../Display/Toasts/LoadingToast";
-const NoteDetails = lazy(() => import("../Display/NoteDetails"));
+const NoteDetails = lazy(() => import("../Display/NoteDetails/NoteDetails"));
 
 const OpenDetails = ({ note }: { note: Notes }) => {
   const [openDetails, setOpenDetails] = useState(false);
