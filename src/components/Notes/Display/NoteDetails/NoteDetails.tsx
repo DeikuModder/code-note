@@ -1,15 +1,16 @@
 import { Suspense, lazy, useState } from "react";
 import type { Notes } from "@/src/types";
-import NoteCodeSnippets from "./NoteCodeSnippets";
-import NoteDocums from "./NoteDocums";
-import NoteVideos from "./NoteVideos";
-import PriorityColor from "../PriorityColor";
-const ListView = lazy(() => import("./ListView"));
+import NoteCodeSnippets from "../NoteCodeSnippets";
+import NoteDocums from "../NoteDocums";
+import NoteVideos from "../NoteVideos";
+import PriorityColor from "../../PriorityColor";
+const ListView = lazy(() => import("../ListView"));
 import { useFormatedDate } from "@/hooks/date";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import LoadingToast from "./Toasts/LoadingToast";
-import AISuggestions from "./AISuggestions";
+import LoadingToast from "../Toasts/LoadingToast";
+import AISuggestions from "../AIModal/AISuggestions";
+import "./styles.css";
 
 interface Props {
   onClose: () => void;
@@ -23,7 +24,7 @@ const NoteDetails: React.FC<Props> = ({ onClose, note }) => {
 
   return (
     <div className="w-full h-[100vh] bg-[#00000070] absolute top-0 left-0 flex flex-col items-center justify-center">
-      <div className="w-[90%] h-[80%] bg-slate-200 rounded-lg overflow-auto max-w-[500px] md:fixed md:top-0 md:right-0 md:h-screen md:rounded-none">
+      <div className="modalContainer w-[90%] h-[80%] bg-slate-200 rounded-lg overflow-auto max-w-[500px] md:fixed md:top-0 md:right-0 md:h-screen md:rounded-none">
         <div className="w-full flex flex-row justify-end">
           <button
             onClick={onClose}
@@ -40,7 +41,7 @@ const NoteDetails: React.FC<Props> = ({ onClose, note }) => {
 
           <AISuggestions
             taskTitle={note.title}
-            prompt={`I have the following task: ${note.title}, tell me what would be the best way to approach this task`}
+            prompt={`I have the following task: ${note.title}, tell me what would be the best way to approach this task, but please summarize it in less than 150 words total`}
             message="Ask AI the best way to approach this task:"
           />
 

@@ -1,11 +1,11 @@
-import type { Generation } from "@/src/types";
 import {
   faMagicWandSparkles,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import CopyToClipboard from "../CopyToClipboard";
+import CopyToClipboard from "../../CopyToClipboard";
+import "./styles.css";
 
 interface AIModalProps {
   onClose: () => void;
@@ -50,7 +50,7 @@ const AIModal: React.FC<AIModalProps> = ({ onClose, taskTitle, prompt }) => {
   }, []);
 
   return (
-    <div className="absolute top-0 left-0 m-2 p-4 text-slate-200 bg-stone-800 w-[350px] max-h-[500px] flex flex-col items-center rounded-lg overflow-auto md:w-[500px]">
+    <div className="boxContainer absolute top-0 left-0 m-2 p-4 text-slate-200 bg-stone-800 w-[350px] max-h-[500px] flex flex-col items-center rounded-lg overflow-auto md:w-[400px]">
       <div className="w-full flex flex-row justify-end">
         <button
           onClick={onClose}
