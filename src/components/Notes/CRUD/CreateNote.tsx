@@ -4,7 +4,7 @@ import ErrorToast from "../Display/Toasts/ErrorToast";
 import LoadingToast from "../Display/Toasts/LoadingToast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle, faXmark } from "@fortawesome/free-solid-svg-icons";
-import AISuggestions from "../Display/AISuggestions";
+import AISuggestions from "../Display/AIModal/AISuggestions";
 
 interface ModalProps {
   onClose: () => void;
