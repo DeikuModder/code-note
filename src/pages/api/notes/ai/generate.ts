@@ -15,6 +15,9 @@ export const GET: APIRoute = async ({ request }) => {
     return SSE({ request }, async (sendEvent) => {
       const response = await cohere.generateStream({
         prompt: prompt as string,
+        model: "command-light",
+        maxTokens: 150,
+        temperature: 0.7,
       });
 
       for await (const part of response) {
