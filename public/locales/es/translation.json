@@ -1,0 +1,19 @@
+{
+  "welcome": {
+    "text": "Organiza tu tiempo y tus tareas de manera efectiva con toda la información que requieras en un solo lugar! 📒📝"
+  },
+  "benefits": {
+    "1": "Crea tu nota",
+    "2": "Guarda todo lo relacionado a con esa tarea/nota dentro de ella",
+    "3": "Ponte fechas limites!",
+    "4": "Logra tu metas y aumenta tu productividad!"
+  },
+  "features": {
+    "title": "Guarda todo!",
+    "description": "Guarda cada pieza de información que vayas a necesitar para tus notas dentro de ellas!",
+    "1": "Guarda vídeos",
+    "2": "Links de documentación",
+    "3": "Snippets de código",
+    "4": "Pidele ayuda a la IA"
+  }
+}

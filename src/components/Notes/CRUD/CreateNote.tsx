@@ -52,8 +52,8 @@ const Modal: React.FC<ModalProps> = ({ onClose, userID }) => {
   };
 
   return (
-    <div className="w-full h-[100vh] bg-[#00000070] absolute top-0 left-0 flex flex-col items-center justify-center">
-      <div className="w-[80%] h-[70%] bg-slate-200 rounded-lg max-w-[400px]">
+    <div className="w-full h-[912px] bg-[#00000070] absolute top-0 left-0 flex flex-col items-center justify-center">
+      <div className="w-[80%] h-[450px] bg-slate-200 rounded-lg max-w-[400px]">
         <div className="w-full flex flex-row justify-end">
           <button
             onClick={onClose}

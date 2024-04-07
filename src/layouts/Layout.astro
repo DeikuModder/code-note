@@ -2,6 +2,7 @@
 import Footer from '@/components/Footer.astro';
 import { ViewTransitions } from 'astro:transitions';
 import Header from '@/components/Header.astro';
+import i18next, { t } from "i18next"
 interface Props {
 	title: string;
 	description: string
@@ -11,7 +12,7 @@ const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={i18next.language}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
@@ -34,7 +35,7 @@ const { title, description } = Astro.props;
 	},
 	html {
 		font-family: system-ui, sans-serif;
-		background: #f1f1f1;
+		background-color: #f1f1f1;
 		margin: 0;
 		padding: 0;
 	},

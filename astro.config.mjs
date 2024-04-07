@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import million from "million/compiler";
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
+import astroI18next from "astro-i18next";
 
 import vercel from "@astrojs/vercel/serverless";
 
@@ -16,7 +17,7 @@ export default defineConfig({
       }),
     ],
   },
-  integrations: [tailwind(), react()],
+  integrations: [tailwind(), react(), astroI18next()],
   output: "server",
   adapter: vercel(),
 });

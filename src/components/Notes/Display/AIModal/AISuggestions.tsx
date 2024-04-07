@@ -50,7 +50,7 @@ const AIModal: React.FC<AIModalProps> = ({ onClose, taskTitle, prompt }) => {
   }, []);
 
   return (
-    <div className="boxContainer absolute top-0 left-0 m-2 p-4 text-slate-200 bg-stone-800 w-[350px] max-h-[500px] flex flex-col items-center rounded-lg overflow-auto md:w-[400px]">
+    <div className="boxContainer absolute top-0 left-0 m-2 p-4 text-slate-200 bg-stone-800 w-[350px] max-h-[500px] flex flex-col items-center rounded-lg overflow-auto md:w-[400px] z-50">
       <div className="w-full flex flex-row justify-end">
         <button
           onClick={onClose}

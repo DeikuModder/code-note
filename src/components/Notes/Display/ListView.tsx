@@ -43,7 +43,7 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
   };
 
   return (
-    <div className="modalContainer w-full h-[100vh] bg-slate-200 absolute top-0 left-0 flex flex-col gap-9 p-4 overflow-auto max-w-[500px] md:fixed md:top-0 md:left-0">
+    <div className="modalContainer w-full min-h-[912px] bg-slate-200 absolute top-0 left-0 flex flex-col gap-9 p-4 overflow-auto max-w-[500px] md:fixed md:top-0 md:left-0 z-30">
       <div className="w-full flex flex-row justify-end">
         <button
           onClick={onClose}

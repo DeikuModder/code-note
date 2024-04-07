@@ -23,7 +23,7 @@ const NoteDetails: React.FC<Props> = ({ onClose, note }) => {
   const formatedDate = note.deadline && useFormatedDate(note.deadline);
 
   return (
-    <div className="w-full h-[100vh] bg-[#00000070] absolute top-0 left-0 flex flex-col items-center justify-center">
+    <div className="w-full h-[912px] bg-[#00000070] absolute top-0 left-0 flex flex-col items-center justify-center z-20">
       <div className="modalContainer w-[90%] h-[80%] bg-slate-200 rounded-lg overflow-auto max-w-[500px] md:fixed md:top-0 md:right-0 md:h-screen md:rounded-none">
         <div className="w-full flex flex-row justify-end">
           <button

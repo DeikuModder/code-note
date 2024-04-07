@@ -1,0 +1,19 @@
+{
+  "welcome": {
+    "text": "Organize your time and your tasks, effectively with all the information you need in one place! 📒📝"
+  },
+  "benefits": {
+    "1": "Create your note",
+    "2": "Store everything related to your note/task inside of it",
+    "3": "Set your deadlines",
+    "4": "Reach your goals and increase your productivity"
+  },
+  "features": {
+    "title": "Store everything!",
+    "description": "Save every piece of information you need for your note inside of it!",
+    "1": "Store videos",
+    "2": "Links to documentation",
+    "3": "Code snippets",
+    "4": "Ask AI for help"
+  }
+}

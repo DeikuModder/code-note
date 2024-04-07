@@ -1,7 +1,8 @@
 ---
+import LiteYoutube from "@/components/LiteYoutube.astro";
 import NotesLogic from "@/components/Notes/NotesLogic";
 import SignOut from "@/components/SignOut";
-import DashboardLayout from "@/layouts/DashboardLayout.astro";
+import Layout from "@/layouts/Layout.astro";
 import { supabase } from "@/lib/supabase";
 
 const { cookies, redirect } = Astro;
@@ -31,10 +32,10 @@ if (error) {
 }
 ---
 
-<DashboardLayout title="CodeNote | Dashboard" description="Your CodeNote dashboard, where you can see and interact with your notes">
+<Layout title="CodeNote | Dashboard" description="Your CodeNote dashboard, where you can see and interact with your notes">
   <main class="flex flex-col items-center justify-between h-screen">
-    <h1 class="text-5xl font-bold text-center mt-4">Your notes 📒</h1>
+    <h1 class="text-5xl font-bold text-center mt-4">Welcome!</h1>
     <NotesLogic userID={data?.user?.id!} client:load/>
     <SignOut client:load/>
   </main>
-</DashboardLayout>
+</Layout>

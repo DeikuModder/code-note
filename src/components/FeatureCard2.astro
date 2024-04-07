@@ -1,0 +1,22 @@
+---
+type Orientation = "flex-col" | "flex-row" | "flex-row-reverse" | "flex-col-reverse"
+
+interface Props {
+    orientation?: Orientation
+}
+
+const { orientation } = Astro.props
+
+---
+
+<article class={`bg-neutral-50 w-[300px] aspect-video p-2 border-2 border-neutral-800 rounded-lg flex ${orientation} justify-center items-center gap-4 sm:w-[400px]`}>
+    <div class="p-2 border-b-2 border-neutral-800 w-[50%] grid place-content-center">
+        <div class="w-[80px] p-1 rounded-full border-2 border-neutral-800">
+            <slot name="icon"/>
+        </div>
+    </div>
+
+    <div class="text-center font-semibold text-xl w-[50%] sm:text-2xl">
+        <slot name="text"/>
+    </div>
+</article>

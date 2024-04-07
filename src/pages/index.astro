@@ -1,6 +1,9 @@
 ---
+import FeatureCard from "@/components/FeatureCard.astro";
+import FeatureCard2 from "@/components/FeatureCard2.astro";
 import LoginOrDashboard from "@/components/Login/LoginOrDashboard.astro"
 import Layout from '@/layouts/Layout.astro';
+import { t } from "i18next"
 
 export const prerender = true
 ---
@@ -8,65 +11,111 @@ export const prerender = true
 
 <Layout title="CodeNote" description="CodeNote it's an open source web plattform that's made for handling the documentation for taks/notes">
 	<main class="flex flex-col justify-center">
-		<section class="p-1 flex text-center items-center justify-evenly" id="welcomeSection">
-			<div class="fixed z-0 opacity-10 w-[90%] top-52 md:w-[40%] md:opacity-100 md:static">
-				<img src="/logo.webp" class="aspect-square w-full" alt="code-note-logo"/>
-			</div>
+		<section class="p-2 flex flex-col text-center items-center justify-center gap-4 sm:flex-row sm:gap-12" id="welcomeSection">
+			<figure class="w-[240px] rounded-full aspect-square sm:w-[450px]">
+				<img src="./logo.webp" alt="code-note-logo" class="w-full aspect-square cover"/>
+			</figure>
 
-			<div class="flex flex-col z-50 items-center gap-8">
-				<h1 class="text-6xl font-bold" >Code<span class=" text-sky-600 p-1">Note</span></h1>
-
+			<div class="flex flex-col gap-8 items-center justify-center sm:ml-8 sm:border-l-4 sm:p-8 sm:border-black">
 				<p class="text-2xl font-medium md:text-5xl md:w-[500px]">
-				Organize your time and your tasks, effectively with all the information you need in one place! 📒📝
+					Organize your time and your tasks, effectively with all the information you need in one place! 📒📝
 				</p>
-						
-				<LoginOrDashboard styles="text-slate-200 p-2 rounded-lg text-3xl bg-neutral-900 md:text-5xl max-w-[280px] transition-all hover:scale-105" title="Get Started!"/>	
+								
+				<LoginOrDashboard styles="text-slate-200 p-2 rounded-lg text-3xl bg-neutral-900 md:text-5xl min-w-fit max-w-[280px] transition-all hover:scale-105" title="Get Started!"/>
 			</div>
-		</section>
-
-		<section class="p-2 flex text-2xl flex-col text-center items-center h-full gap-4 w-full z-50" id="how-it-works">
-
-			<h3 class="text-3xl font-bold mt-16 md:text-5xl">How it works ❔❓</h3>
-
-			<p class="max-w-[700px]">
-				CodeNote it's like your usual todo list app, but focused on the organization of documentation, what does this mean? 
-			</p>
-			<p>
-				Let's say you want to learn how to code in Java ☕
-			</p>
-			<img src="/ss-1.webp" loading="lazy" alt="creating-the-note"/>
-
-			<p>
-				There you have your note created, click on that eye icon over there 👁️‍🗨️
-			</p>
-			<img src="/ss-2.webp" loading="lazy" alt="note-created"/>
-
-			<p>You'll see the details of this note 📄</p>
-			<img src="/ss-3.webp" loading='lazy' alt="note-details" />
-
-			<p>In here you can add, links to documentation 🔗📚</p>
-			<img src="/ss-4.webp" loading='lazy' alt='note-documentation' />
-
-			<p>Embedded videos ⏯️</p>
-			<img src="/ss-5.webp" loading="lazy" alt="note-videos"/>
-
-			<p>And your code snippets as well! 👩‍💻</p>
-			<img src="/ss-6.webp" loading="lazy" alt="note-code-snippets" />
-
-			<p class="max-w-[700px]">Store all the information, set the deadline, a description, and everything you may need to complete your task in here! ⚡</p>
-
-			<h4 class="text-red-700 font-bold">DISCLAIMER:</h4>
-			<p class="text-neutral-700 italic text-lg max-w-[700px]">
-				Please keep in mind that at this moment this is the release version of the app, therefore it's very possible to be bugs and feel limitated on somethings, so any feedback is very well appreciated to keep improving it
-			</p>
 		</section>
 		
+		<section class="p-2 py-4 flex justify-center flex-wrap gap-4 bg-neutral-900 sm:justify-evenly">
+			<FeatureCard orientation="flex-col">
+				<div slot="icon">
+					<svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-note"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 20l7 -7" /><path d="M13 20v-6a1 1 0 0 1 1 -1h6v-7a2 2 0 0 0 -2 -2h-12a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7" /></svg>
+				</div>
+				<p slot="text">
+					Create your note
+				</p>
+			</FeatureCard>
+
+			<FeatureCard orientation="flex-col">
+				<div slot="icon">
+					<svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-file-pencil"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><path d="M10 18l5 -5a1.414 1.414 0 0 0 -2 -2l-5 5v2h2z" /></svg>
+				</div>
+				<p slot="text">
+					Store everything related to your note/task inside of it
+				</p>
+			</FeatureCard>
+			
+			<FeatureCard orientation="flex-col">
+				<div slot="icon">
+					<svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-clock"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 7v5l3 3" /></svg>
+				</div>
+				<p slot="text">
+					Set your deadlines
+				</p>
+			</FeatureCard>
+
+			<FeatureCard orientation="flex-col">
+				<div slot="icon">
+					<svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-trending-up"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 17l6 -6l4 4l8 -8" /><path d="M14 7l7 0l0 7" /></svg>
+				</div>
+				<p slot="text">
+					Reach your goals and increase your productivity
+				</p>
+			</FeatureCard>
+
+		</section>
+
+		<section class="p-2 py-4 flex justify-center text-center gap-4 flex-col">
+			<h2 class="text-4xl font-bold">Store everything!</h2>
+			<p class="text-xl">Save every piece of information you need for your note inside of it!</p>
+
+			<div class="flex-wrap flex justify-center gap-4">
+				<FeatureCard2 orientation="flex-row-reverse">
+					<div slot="icon">
+						<svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="#dc0909"  class="icon icon-tabler icons-tabler-filled icon-tabler-brand-youtube"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 3a5 5 0 0 1 5 5v8a5 5 0 0 1 -5 5h-12a5 5 0 0 1 -5 -5v-8a5 5 0 0 1 5 -5zm-9 6v6a1 1 0 0 0 1.514 .857l5 -3a1 1 0 0 0 0 -1.714l-5 -3a1 1 0 0 0 -1.514 .857z" /></svg>
+					</div>
+					<p slot="text">
+						Store videos
+					</p>
+				</FeatureCard2>
+	
+				<FeatureCard2 orientation="flex-row-reverse">
+					<div slot="icon"> 
+						<svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="#0976dc"  class="icon icon-tabler icons-tabler-filled icon-tabler-book"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12.088 4.82a10 10 0 0 1 9.412 .314a1 1 0 0 1 .493 .748l.007 .118v13a1 1 0 0 1 -1.5 .866a8 8 0 0 0 -8 0a1 1 0 0 1 -1 0a8 8 0 0 0 -7.733 -.148l-.327 .18l-.103 .044l-.049 .016l-.11 .026l-.061 .01l-.117 .006h-.042l-.11 -.012l-.077 -.014l-.108 -.032l-.126 -.056l-.095 -.056l-.089 -.067l-.06 -.056l-.073 -.082l-.064 -.089l-.022 -.036l-.032 -.06l-.044 -.103l-.016 -.049l-.026 -.11l-.01 -.061l-.004 -.049l-.002 -.068v-13a1 1 0 0 1 .5 -.866a10 10 0 0 1 9.412 -.314l.088 .044l.088 -.044z" /></svg>
+					</div>
+					<p slot="text">
+						Links to documentation
+					</p>
+				</FeatureCard2>
+	
+				<FeatureCard2 orientation="flex-row-reverse">
+					<div slot="icon">
+						<svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="#d0460b"  class="icon icon-tabler icons-tabler-filled icon-tabler-article"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 3a3 3 0 0 1 2.995 2.824l.005 .176v12a3 3 0 0 1 -2.824 2.995l-.176 .005h-14a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-12a3 3 0 0 1 2.824 -2.995l.176 -.005h14zm-2 12h-10l-.117 .007a1 1 0 0 0 0 1.986l.117 .007h10l.117 -.007a1 1 0 0 0 0 -1.986l-.117 -.007zm0 -4h-10l-.117 .007a1 1 0 0 0 0 1.986l.117 .007h10l.117 -.007a1 1 0 0 0 0 -1.986l-.117 -.007zm0 -4h-10l-.117 .007a1 1 0 0 0 0 1.986l.117 .007h10l.117 -.007a1 1 0 0 0 0 -1.986l-.117 -.007z" /></svg>
+					</div>
+					<p slot="text">
+						Code snippets
+					</p>
+				</FeatureCard2>
+	
+				<FeatureCard2 orientation="flex-row-reverse">
+					<div slot="icon">
+						<svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="none"  stroke="#01df26"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brain"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8" /><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8" /><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5" /><path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0" /><path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5" /><path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10" /></svg>
+					</div>
+					<p slot="text">
+						Ask AI for help
+					</p>
+				</FeatureCard2>
+			</div>
+		</section>
 	</main>
 </Layout>
 
-<style>
+<style is:global>
 	#welcomeSection {
 		height: calc(100vh - 86px);
+	}
+
+	figure {
+		shape-outside: circle(50%);
 	}
 </style>
 
