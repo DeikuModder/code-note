@@ -1,17 +1,16 @@
 ---
-
+import { changeLanguage } from "i18next";
 import RegisterForm from "@/components/Register/RegisterForm";
 import Layout from "@/layouts/Layout.astro";
 
-const { cookies, redirect } = Astro;
+changeLanguage("en");
 
+const { cookies, redirect } = Astro;
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
-
 if (accessToken && refreshToken) {
-  return redirect("/dashboard");
+    return redirect("/dashboard");
 }
-
 ---
 
 <Layout title="CodeNote | Sing Up" description="Create an account on CodeNote">
