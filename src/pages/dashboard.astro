@@ -1,12 +1,9 @@
 ---
-import { changeLanguage } from "i18next";
-import LiteYoutube from "@/components/LiteYoutube.astro";
 import NotesLogic from "@/components/Notes/NotesLogic";
 import SignOut from "@/components/SignOut";
 import Layout from "@/layouts/Layout.astro";
 import { supabase } from "@/lib/supabase";
 
-changeLanguage("en");
 
 const { cookies, redirect } = Astro;
 const accessToken = cookies.get("sb-access-token");
