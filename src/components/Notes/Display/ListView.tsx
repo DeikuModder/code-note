@@ -1,9 +1,5 @@
 import { faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
-import type {
-  Notes,
-  documentationLinks,
-  embeddedVideoProperties,
-} from "@/src/types";
+import type { Notes, documentationLinks } from "@/src/types";
 import CodeSnippets from "./CodeSnippets";
 import DocumLinks from "./DocumLinks";
 import Videos from "./Videos";
@@ -26,7 +22,7 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
     object:
       | { documLinks?: documentationLinks[] }
       | { codeSnippets?: string[] }
-      | { videos_info?: embeddedVideoProperties[] }
+      | { videos_info?: string[] }
   ) => {
     const result = deleteOne(array, index);
     let objectNote = {};
@@ -43,7 +39,7 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
   };
 
   return (
-    <div className="modalContainer w-full min-h-[912px] bg-slate-200 absolute top-0 left-0 flex flex-col gap-9 p-4 overflow-auto max-w-[500px] md:fixed md:top-0 md:left-0 z-30">
+    <div className="modalContainer h-full w-full bg-slate-200 absolute top-0 left-0 flex flex-col gap-9 p-4 overflow-auto sm:w-[500px] sm:fixed z-50">
       <div className="w-full flex flex-row justify-end">
         <button
           onClick={onClose}
@@ -54,7 +50,7 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
       </div>
 
       <h3 className="font-bold text-2xl">Documentation Links 🔗</h3>
-      <ul className="grid grid-cols-2 gap-4">
+      <ul className="flex flex-wrap gap-4">
         {note.documLinks && note.documLinks.length > 0 ? (
           note.documLinks.map((documLink, index, array) => {
             return (
@@ -73,7 +69,7 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
       </ul>
 
       <h3 className="font-bold text-2xl">Videos ⏯️</h3>
-      <ul className="grid grid-cols-2 gap-4">
+      <ul className="flex flex-wrap gap-4">
         {note.videos_info && note.videos_info.length > 0 ? (
           note.videos_info.map((video, index, array) => {
             return (
@@ -82,7 +78,7 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
                 handleDelete={() =>
                   handleDelete(array, index, { videos_info: [] })
                 }
-                children={<Videos videoInfo={video} />}
+                children={<Videos videoUrl={video} />}
               />
             );
           })
@@ -92,7 +88,7 @@ const ListView: React.FC<Props> = ({ onClose, note }) => {
       </ul>
 
       <h3 className="font-bold text-2xl">Code Snippets 👩‍💻</h3>
-      <ul className="grid grid-cols-2 gap-4">
+      <ul className="flex flex-wrap  gap-4">
         {note.codeSnippets && note.codeSnippets.length > 0 ? (
           note.codeSnippets.map((codeSnippet, index, array) => {
             return (

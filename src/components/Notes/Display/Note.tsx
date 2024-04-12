@@ -46,7 +46,7 @@ const Note: React.FC<Props> = ({ note }) => {
           <div className="w-[50%]">
             <p>{note.title}</p>
           </div>
-          <div className="w-[50%] flex justify-end gap-2 text-xl">
+          <div className="w-[50%] flex justify-end items-center gap-2 text-xl">
             {note.status !== "failed" ? <DoneCheckbox note={note} /> : null}
             <DeleteNote note={note} />
             <OpenDetails note={note} />

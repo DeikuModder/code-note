@@ -17,7 +17,7 @@ const ListItem: React.FC<Props> = ({ handleDelete, children }) => {
   };
 
   return (
-    <div>
+    <div className="w-[150px] aspect-video sm:w-[220px]">
       <button
         onClick={() => setDeleteToast(true)}
         className="w-full bg-blue-900 rounded-t-lg p-2 text-gray-200 text-end"

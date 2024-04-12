@@ -18,11 +18,6 @@ export type documentationLinks = {
   url: string;
 };
 
-export type embeddedVideoProperties = {
-  srcLink: string;
-  title: string;
-};
-
 export interface BasicNote {
   title: string;
   priority: string;
@@ -43,7 +38,7 @@ export interface Notes {
   deadline?: Date;
   documLinks?: documentationLinks[];
   codeSnippets?: string[];
-  videos_info?: embeddedVideoProperties[];
+  videos_info?: string[];
 }
 
 export interface Generation {

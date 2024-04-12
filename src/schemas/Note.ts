@@ -16,12 +16,7 @@ const noteSchema = new Schema(
       },
     ],
     codeSnippets: { type: [String] },
-    videos_info: [
-      {
-        srcLink: String,
-        title: String,
-      },
-    ],
+    videos_info: { type: [String] },
   },
   {
     versionKey: false,

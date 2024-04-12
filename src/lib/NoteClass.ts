@@ -1,9 +1,4 @@
-import type {
-  Notes,
-  embeddedVideoProperties,
-  Status,
-  documentationLinks,
-} from "@/src/types";
+import type { Notes, Status, documentationLinks } from "@/src/types";
 
 class NoteClass implements Notes {
   title: string;
@@ -14,7 +9,7 @@ class NoteClass implements Notes {
   deadline?: Date;
   documLinks?: documentationLinks[];
   codeSnippets?: string[];
-  videos_info?: embeddedVideoProperties[];
+  videos_info?: string[];
 
   constructor(
     title: string,
@@ -24,7 +19,7 @@ class NoteClass implements Notes {
     deadline?: Date,
     documLinks?: documentationLinks[],
     codeSnippets?: string[],
-    videos_info?: embeddedVideoProperties[]
+    videos_info?: string[]
   ) {
     this.title = title;
     this.priority = priority;
